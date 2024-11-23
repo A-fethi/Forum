@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta tags for character set and viewport settings -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Stylesheets and favicon -->
+    <link rel="stylesheet" href="../static/styles/style.css">
+    <link rel="shortcut icon" href="../static/images/—Pngtree—letter b logo_6059128.png">
+    <!-- Preconnect and link to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&family=Kdam+Thmor+Pro&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet">
+    <!-- Script for the webpage -->
+    <script src="../static/scripts/script.js"></script>
+    <!-- Title of the webpage -->
+    <title>Your Platform for Expressive Writing</title>
+</head>
+
+<body>
+    <!-- Header section with navigation links -->
+    <header>
+        <div>
+            <div class="logo">
+                <nav>
+                    <a href="/"><img src="../static/images/—Pngtree—letter b logo_6059128.png" alt="logo"
+                            width="60px"></a>
+                    <ul>
+                        <li><a href="/" class="home">Home</a></li>
+                        <li><a href="/post" class="about">Write</a></li>
+                        {{if .User.IsAuthenticated}}
+                        <li><a href="/logout" class="logout">Logout</a></li>
+                        {{else}}
+                        <li><a href="/login" class="login">Login</a></li>
+                        <li><a href="/signup" class="start">Get Started</a></li>
+                        {{end}}
+                    </ul>
+                </nav>
+                {{range .FlashMessages}}
+                    {{if eq .Category "error"}}
+                    <div id="error-flash" class="Error_flash hidden" role="alert">
+                        {{.Message}}
+                        <button type="button" class="btn-close" onclick="closeFlash('error-flash')">&times;</button>
+                    </div>
+                    {{else}}
+                    <div id="success-flash" class="Success_flash hidden" role="alert">
+                        {{.Message}}
+                        <button type="button" class="btn-close" onclick="closeFlash('success-flash')">&times;</button>
+                    </div>
+                    {{end}}
+                {{end}}
+            </div>
+            <hr class="hr1">
+        </div>
+    </header>
+    <div class="mini-header">
+        <h2 class="title">Embrace the art of curiosity.</h2>
+        {{if not .User.IsAuthenticated}}
+        <img src="../static/images/peeps-avatar-alpha.png" alt="" width="250" class="sapiens">
+        {{else}}
+        <img src="../static/images/peeps-avatar-alpha (2).png" alt="" width="250" class="sapiens1">
+        {{end}}
+        <h3 class="intro">Dive into a world of endless stories,diverse thinking.<br>Here, curiosity is not just
+            encouraged,
+            it's celebrated.<br>Join us on a journey of discovery across a myriad of topics,<br>where every article is
+            an
+            invitation to expand your mind and ignite your imagination.</h3>
+        {{if not .User.IsAuthenticated}}
+        <p class="p1"><a href="/signup">Start Reading</a></p>
+        {{end}}
+        <hr class="hr2">
+    </div>
+    <!-- Main content section with recent blog posts -->
+    <section class="container">
+        <div class="recent">
+            <h3>Recent Blogs</h3>
+        </div>
+        <div class="section">
+            {{range .Posts}}
+            <div class="card">
+                <div class="content">
+                    <h3>
+                        From <a href="/posts/{{.User.Username}}" class="posts">{{.User.Username}}</a><br> At
+                        {{.CreatedAt}}
+                    </h3>
+                    <h2>
+                        {{.Title}}
+                    </h2>
+                    <p>
+                        {{.Article}}
+                    </p>
+                    <a href="/blog/{{.ID}}" class="button"><strong>Read More</strong></a>
+                    {{if eq $.User.ID .Author}}
+                    <a href="/delete/{{.ID}}" class="button"><strong>Delete</strong></a>
+                    {{end}}
+                </div>
+            </div>
+            {{end}}
+        </div>
+    </section>
+</body>
+
+</html>
