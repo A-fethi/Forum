@@ -1,0 +1,112 @@
+/* Basic styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.post {
+    background-color: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.post-title {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.post-content {
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+.post-interactions {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.like-btn, .dislike-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.dislike-btn {
+    background-color: #f44336;
+}
+
+.like-btn:hover, .dislike-btn:hover {
+    opacity: 0.8;
+}
+
+.likes-count {
+    font-size: 1em;
+    margin-left: 15px;
+}
+
+.comments-section {
+    margin-top: 20px;
+}
+
+.comment-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    resize: vertical;
+}
+
+.submit-comment-btn {
+    padding: 10px 15px;
+    font-size: 1em;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.submit-comment-btn:hover {
+    background-color: #005f6a;
+}
+
+.comments-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.comments-list li {
+    background-color: #f9f9f9;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
