@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Page</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/static/styles/posts.css">
 </head>
+
 <body>
     <div class="container">
         <div class="post">
             <h2 class="post-title">Post 1</h2>
             <p class="post-content">This is the content of the first post. It's a short description.</p>
             <div class="post-interactions">
-                <button class="like-btn">Like</button>
-                <button class="dislike-btn">Dislike</button>
-                <span class="likes-count">0 Likes</span>
+                <button id="like-btn" class="like-btn">Like</button>
+                <button id="dislike-btn" class="dislike-btn">Dislike</button>
+                <span id="likes-count" class="likes-count">0 Likes</span>
+                <span id="dislikes-count" class="dislikes-count">0 Dislikes</span>
             </div>
             <div class="comments-section">
                 <h3>Comments:</h3>
@@ -26,25 +29,71 @@
                 </ul>
             </div>
         </div>
-
-        <div class="post">
-            <h2 class="post-title">Post 2</h2>
-            <p class="post-content">This is the content of the second post. More information here.</p>
-            <div class="post-interactions">
-                <button class="like-btn">Like</button>
-                <button class="dislike-btn">Dislike</button>
-                <span class="likes-count">0 Likes</span>
-            </div>
-            <div class="comments-section">
-                <h3>Comments:</h3>
-                <textarea class="comment-input" placeholder="Write a comment..."></textarea>
-                <button class="submit-comment-btn">Submit</button>
-                <ul class="comments-list">
-                    <li>Interesting perspective.</li>
-                    <li>I agree with this post!</li>
-                </ul>
-            </div>
-        </div>
     </div>
 </body>
+<script>
+    let likeButton = document.getElementById('like-btn');
+    let dislikeButton = document.getElementById('dislike-btn')
+    let likeCount = document.getElementById('likes-count');
+    let dislikeCount = document.getElementById('dislikes-count');
+    let like = 0;
+    let dislike = 0;
+
+    // function likeFunction() {
+    //     if (dislike > 0) {
+    //         dislike--
+    //     }
+    // }
+
+    // function dislikeFunction() {
+    //     if (like > 0) {
+    //         like--
+    //     }
+    // }
+
+    likeButton.addEventListener('click', () => {
+        if (like >= 0) {
+            like++
+        }
+        if (like == 1) {
+            likeCount.innerText = like + " Like";
+        } else {
+            likeCount.innerText = like + " Likes";
+        }
+        likeButton.disabled = true;
+        dislikeButton.disabled = false;
+        if (dislike > 0) {
+            dislike--;
+            if (dislike == 1) {
+                dislikeCount.innerText = dislike + " Dislike";
+            } else {
+                dislikeCount.innerText = dislike + " Dislikes";
+            }
+            // dislikeButton.disabled = true;
+        }
+    });
+
+    dislikeButton.addEventListener('click', () => {
+        if (dislike >= 0) {
+            dislike++;
+        }
+        if (dislike == 1) {
+            dislikeCount.innerText = dislike + " Dislike";
+        } else {
+            dislikeCount.innerText = dislike + " Dislikes";
+        }
+        dislikeButton.disabled = true;
+        likeButton.disabled = false;
+        if (like > 0) {
+            like--;
+            if (like == 1) {
+                likeCount.innerText = like + " Like";
+            } else {
+                likeCount.innerText = like + " Likes";
+            }
+            // likeButton.disabled = true;
+        }
+    });
+</script>
+
 </html>

@@ -42,6 +42,7 @@ body {
 
 .post-interactions {
     display: flex;
+    gap: 5px;
     align-items: center;
     margin-bottom: 15px;
 }
