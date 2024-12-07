@@ -3,9 +3,10 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	forum "forum/ressources"
 	"net/http"
 	"os"
+
+	forum "forum/ressources"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -25,12 +26,19 @@ func main() {
 		return
 	}
 
+	_, err = insertSql(db, comment)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
 	fmt.Println("All tables was created successfully.")
 
 	http.HandleFunc("/static/", forum.HandleStatic)
 	http.HandleFunc("/", forum.HomeHandler)
 	http.HandleFunc("/login", forum.HandleLogin)
 	http.HandleFunc("/signup", forum.HandleSignup)
+	http.HandleFunc("/posts", forum.HandlePosts)
 	fmt.Println("server listening on http://localhost:8080")
 	http.ListenAndServe(":8080", nil)
 }

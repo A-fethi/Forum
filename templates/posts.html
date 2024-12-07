@@ -14,15 +14,17 @@
             <h2 class="post-title">Post 1</h2>
             <p class="post-content">This is the content of the first post. It's a short description.</p>
             <div class="post-interactions">
-                <button id="like-btn" class="like-btn">Like</button>
-                <button id="dislike-btn" class="dislike-btn">Dislike</button>
-                <span id="likes-count" class="likes-count">0 Likes</span>
-                <span id="dislikes-count" class="dislikes-count">0 Dislikes</span>
+                    <button id="like-btn" class="like-btn" name="like">Like</button>
+                    <button id="dislike-btn" class="dislike-btn" name="dislike">Dislike</button>
+                    <span id="likes-count" class="likes-count">0 Likes</span>
+                    <span id="dislikes-count" class="dislikes-count">0 Dislikes</span>
             </div>
             <div class="comments-section">
                 <h3>Comments:</h3>
-                <textarea class="comment-input" placeholder="Write a comment..."></textarea>
-                <button class="submit-comment-btn">Submit</button>
+                <form method="post" action="/posts">
+                    <input class="comment-input" placeholder="Write a comment..." name="comment">
+                    <button class="submit-comment-btn">Submit</button>
+                </form>
                 <ul class="comments-list">
                     <li>Nice post!</li>
                     <li>Great job!</li>
@@ -39,37 +41,33 @@
     let like = 0;
     let dislike = 0;
 
-    // function likeFunction() {
-    //     if (dislike > 0) {
-    //         dislike--
-    //     }
-    // }
-
-    // function dislikeFunction() {
-    //     if (like > 0) {
-    //         like--
-    //     }
-    // }
-
-    likeButton.addEventListener('click', () => {
-        if (like >= 0) {
-            like++
-        }
+    function likes() {
         if (like == 1) {
             likeCount.innerText = like + " Like";
         } else {
             likeCount.innerText = like + " Likes";
         }
-        likeButton.disabled = true;
-        dislikeButton.disabled = false;
+
+    }
+
+    function dislikes() {
+        if (dislike == 1) {
+            dislikeCount.innerText = dislike + " Dislike";
+        } else {
+            dislikeCount.innerText = dislike + " Dislikes";
+        }
+    }
+
+    likeButton.addEventListener('click', () => {
+        if (like >= 0) {
+            like++
+        }
+        likes()
+        likeButton.disable = true;
+        dislikeButton.disable = false;
         if (dislike > 0) {
             dislike--;
-            if (dislike == 1) {
-                dislikeCount.innerText = dislike + " Dislike";
-            } else {
-                dislikeCount.innerText = dislike + " Dislikes";
-            }
-            // dislikeButton.disabled = true;
+            dislikes()
         }
     });
 
@@ -77,21 +75,12 @@
         if (dislike >= 0) {
             dislike++;
         }
-        if (dislike == 1) {
-            dislikeCount.innerText = dislike + " Dislike";
-        } else {
-            dislikeCount.innerText = dislike + " Dislikes";
-        }
-        dislikeButton.disabled = true;
-        likeButton.disabled = false;
+        dislikes()
+        likeButton.disable = false;
+        dislikeButton.disable = true;
         if (like > 0) {
             like--;
-            if (like == 1) {
-                likeCount.innerText = like + " Like";
-            } else {
-                likeCount.innerText = like + " Likes";
-            }
-            // likeButton.disabled = true;
+            likes()
         }
     });
 </script>

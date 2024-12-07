@@ -2,13 +2,17 @@ package forum
 
 import (
 	"database/sql"
+	"fmt"
 	"html/template"
+	"io"
 	"log"
 	"net/http"
 )
 
 func HandleLogin(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
+		data, _ := io.ReadAll(r.Body)
+		fmt.Println(string(data))
 		email := r.FormValue("email")
 		password := r.FormValue("password")
 		if email == "" || password == "" {
