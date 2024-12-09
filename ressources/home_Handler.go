@@ -1,7 +1,6 @@
 package forum
 
 import (
-	"fmt"
 	"html/template"
 	"net/http"
 )
@@ -16,9 +15,6 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		HandleError(w, http.StatusNotFound)
 		return
 	}
-
-	comment := r.FormValue("comment")
-	fmt.Println("comment", comment)
 
 	tmpl, err := template.ParseFiles("templates/posts.html")
 	if err != nil {

@@ -14,10 +14,10 @@
             <h2 class="post-title">Post 1</h2>
             <p class="post-content">This is the content of the first post. It's a short description.</p>
             <div class="post-interactions">
-                    <button id="like-btn" class="like-btn" name="like">Like</button>
-                    <button id="dislike-btn" class="dislike-btn" name="dislike">Dislike</button>
-                    <span id="likes-count" class="likes-count">0 Likes</span>
-                    <span id="dislikes-count" class="dislikes-count">0 Dislikes</span>
+                <button class="like-btn" onclick="request('like')">Like</button>
+                <button id="dislike-btn" class="dislike-btn" onclick="request('dislike')">Dislike</button>
+                <span class="likes-count">0 Likes</span>
+                <span id="dislikes-count" class="dislikes-count">0 Dislikes</span>
             </div>
             <div class="comments-section">
                 <h3>Comments:</h3>
@@ -25,64 +25,100 @@
                     <input class="comment-input" placeholder="Write a comment..." name="comment">
                     <button class="submit-comment-btn">Submit</button>
                 </form>
-                <ul class="comments-list">
-                    <li>Nice post!</li>
-                    <li>Great job!</li>
-                </ul>
             </div>
+            <ul class="comments-list">
+                <li>
+                    <div class="comment">
+                        <div>
+                            Author: Content
+                        </div>
+                    </div>
+                    <div>
+                        <button>like</button>
+                        <input class="reply-btn" type="checkbox" id="toggle" />
+                        <label class="toggle-label" for="toggle">Reply</label>
+                        <div class="content">
+                            <div class="reply-section">
+                                <h3>Replies:</h3>
+                                <form method="post" action="/posts">
+                                    <input class="reply-input" placeholder="Write a reply..." name="reply">
+                                    <button class="submit-comment-btn">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 </body>
-<script>
+<!-- <script>
     let likeButton = document.getElementById('like-btn');
     let dislikeButton = document.getElementById('dislike-btn')
-    let likeCount = document.getElementById('likes-count');
+    let likeCount = document.querySelector('.likes-count');
     let dislikeCount = document.getElementById('dislikes-count');
     let like = 0;
     let dislike = 0;
 
-    function likes() {
-        if (like == 1) {
-            likeCount.innerText = like + " Like";
-        } else {
-            likeCount.innerText = like + " Likes";
-        }
+    function request(reaction) {
+        let likeCount = document.querySelector('.likes-count');
+        console.log(reaction);
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "/")
 
+        xhr.responseType = "json";
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                console.log(xhr.response);
+            } else {
+                console.log(`Error: ${xhr.status}`)
+            }
+        };
+        xhr.send(`post_id=${post_id}&reaction=${reaction}`);
     }
 
-    function dislikes() {
-        if (dislike == 1) {
-            dislikeCount.innerText = dislike + " Dislike";
-        } else {
-            dislikeCount.innerText = dislike + " Dislikes";
-        }
-    }
+        function likes() {
+            if (like == 1) {
+                likeCount.innerText = like + " Like";
+            } else {
+                likeCount.innerText = like + " Likes";
+            }
 
-    likeButton.addEventListener('click', () => {
-        if (like >= 0) {
-            like++
         }
-        likes()
-        likeButton.disable = true;
-        dislikeButton.disable = false;
-        if (dislike > 0) {
-            dislike--;
-            dislikes()
-        }
-    });
 
-    dislikeButton.addEventListener('click', () => {
-        if (dislike >= 0) {
-            dislike++;
+        function dislikes() {
+            if (dislike == 1) {
+                dislikeCount.innerText = dislike + " Dislike";
+            } else {
+                dislikeCount.innerText = dislike + " Dislikes";
+            }
         }
-        dislikes()
-        likeButton.disable = false;
-        dislikeButton.disable = true;
-        if (like > 0) {
-            like--;
+
+        likeButton.addEventListener('click', () => {
+            if (like >= 0) {
+                like++
+            }
             likes()
-        }
-    });
-</script>
+            likeButton.disable = true;
+            dislikeButton.disable = false;
+            if (dislike > 0) {
+                dislike--;
+                dislikes()
+            }
+        });
+
+        dislikeButton.addEventListener('click', () => {
+            if (dislike >= 0) {
+                dislike++;
+            }
+            dislikes()
+            likeButton.disable = false;
+            dislikeButton.disable = true;
+            if (like > 0) {
+                like--;
+                likes()
+            }
+        });
+</script> -->
 
 </html>

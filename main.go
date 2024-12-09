@@ -26,12 +26,6 @@ func main() {
 		return
 	}
 
-	_, err = insertSql(db, comment)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
 	fmt.Println("All tables was created successfully.")
 
 	http.HandleFunc("/static/", forum.HandleStatic)
