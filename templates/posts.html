@@ -22,33 +22,39 @@
             <div class="comments-section">
                 <h3>Comments:</h3>
                 <form method="post" action="/posts">
-                    <input class="comment-input" placeholder="Write a comment..." name="comment">
+                    <input class="comment-input" placeholder="Write a comment..." name="comment" required>
                     <button class="submit-comment-btn">Submit</button>
                 </form>
             </div>
+            {{range .Comments}}
             <ul class="comments-list">
                 <li>
                     <div class="comment">
                         <div>
-                            Author: Content
-                        </div>
-                    </div>
-                    <div>
-                        <button>like</button>
-                        <input class="reply-btn" type="checkbox" id="toggle" />
-                        <label class="toggle-label" for="toggle">Reply</label>
-                        <div class="content">
-                            <div class="reply-section">
-                                <h3>Replies:</h3>
-                                <form method="post" action="/posts">
-                                    <input class="reply-input" placeholder="Write a reply..." name="reply">
-                                    <button class="submit-comment-btn">Submit</button>
-                                </form>
+                            <p><strong>{{.Author}}</strong>: {{.Content}}</p>
+                            <div>
+                                <button>like</button>
+                                <input class="reply-btn" type="checkbox" id="toggle-{{.ID}}" />
+                                <label class="toggle-label" for="toggle-{{.ID}}">Reply</label>
+                                <div class="content">
+                                    <div class="reply-section">
+                                        <h3>Replies:</h3>
+                                        <form method="post" action="/posts">
+                                            <input class="reply-input" placeholder="Write a reply..." name="reply">
+                                            <button class="submit-comment-btn">Submit</button>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </li>
             </ul>
+            {{end}}
+            {{range .Replies}}
+            <p><strong>{{.Author}}</strong>: {{.Content}}</p>
+            {{end}}
         </div>
     </div>
 </body>

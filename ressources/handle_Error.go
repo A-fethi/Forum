@@ -2,6 +2,7 @@ package forum
 
 import (
 	"html/template"
+	"log"
 	"net/http"
 )
 
@@ -17,7 +18,8 @@ func HandleError(w http.ResponseWriter, StatusCodes int) {
 	if err != nil {
 		tmpl, err = template.ParseFiles("templates/500.html")
 		if err != nil {
-			http.Error(w, "internal server error1 500", http.StatusInternalServerError)
+			log.Fatal(err)
+			http.Error(w, "internal server error 500", http.StatusInternalServerError)
 			return
 		}
 
