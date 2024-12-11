@@ -5,12 +5,16 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 type Comment struct {
-	ID      int
-	Author  int
-	Content string
+	ID       int
+	Author   int
+	Content  string
+	Likes    int
+	Dislikes int
+	Replies  []Reply
 }
 
 type Reply struct {
@@ -62,40 +66,43 @@ func HandlePosts(w http.ResponseWriter, r *http.Request) {
 			// HandleError(w, http.StatusInternalServerError)
 			return
 		}
-	} 
+	}
 
 	if reply != "" {
+		commentIDStr := r.FormValue("comment_id")
+		commentID, err := strconv.Atoi(commentIDStr)
+		if err != nil {
+			HandleError(w, http.StatusBadRequest)
+			return
+		}
+
 		newReply := Reply{
-			ID:      5,
 			Content: reply,
 		}
 
 		db, err := sql.Open("sqlite3", "./database/database.db")
 		if err != nil {
 			log.Fatal(err)
-			// HandleError(w, http.StatusInternalServerError)
 			return
 		}
 		defer db.Close()
 
-		_, err = insertSqlReply(db, newReply)
+		_, err = insertSqlReply(db, newReply, commentID)
 		if err != nil {
 			log.Fatal(err)
-			// HandleError(w, http.StatusInternalServerError)
 			return
 		}
 
-		replies, err = getAllReplies(db)
+		comments, err = getAllComments(db)
 		if err != nil {
 			log.Fatal(err)
-			// HandleError(w, http.StatusInternalServerError)
 			return
 		}
 	}
 
 	pageData := PageData{
 		Comments: comments,
-		Replies: replies,
+		Replies:  replies,
 	}
 
 	tmpl, err := template.ParseFiles("templates/posts.html")
@@ -114,35 +121,39 @@ func HandlePosts(w http.ResponseWriter, r *http.Request) {
 }
 
 func getAllComments(db *sql.DB) ([]Comment, error) {
-	row, err := db.Query("SELECT id, content FROM comments ORDER BY created_at DESC")
+	row, err := db.Query("SELECT id, content, likes, dislikes FROM comments ORDER BY created_at ASC")
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer row.Close()
-	var result []Comment
+	var comments []Comment
 	for row.Next() {
 		var comment Comment
-		if err := row.Scan(&comment.ID, &comment.Content); err != nil {
+		if err := row.Scan(&comment.ID, &comment.Content, &comment.Likes, &comment.Dislikes); err != nil {
 			log.Fatal(err)
 		}
-		result = append(result, comment)
+		comment.Replies, err = getRepliesForComment(db, comment.ID)
+		if err != nil {
+			return nil, err
+		}
+		comments = append(comments, comment)
 	}
-	return result, nil
+	return comments, nil
 }
 
-func getAllReplies(db *sql.DB) ([]Reply, error) {
-	row, err := db.Query("SELECT id, content FROM replies ORDER BY created_at DESC")
+func getRepliesForComment(db *sql.DB, commentID int) ([]Reply, error) {
+	row, err := db.Query("SELECT id, content FROM replies WHERE comment_id = ? ORDER BY created_at ASC", commentID)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer row.Close()
-	var result []Reply
+	var replies []Reply
 	for row.Next() {
 		var reply Reply
 		if err := row.Scan(&reply.ID, &reply.Content); err != nil {
 			log.Fatal(err)
 		}
-		result = append(result, reply)
+		replies = append(replies, reply)
 	}
-	return result, nil
+	return replies, nil
 }

@@ -14,10 +14,12 @@
             <h2 class="post-title">Post 1</h2>
             <p class="post-content">This is the content of the first post. It's a short description.</p>
             <div class="post-interactions">
-                <button class="like-btn" onclick="request('like')">Like</button>
-                <button id="dislike-btn" class="dislike-btn" onclick="request('dislike')">Dislike</button>
-                <span class="likes-count">0 Likes</span>
-                <span id="dislikes-count" class="dislikes-count">0 Dislikes</span>
+                <form method="post">
+                    <button class="like-btn" name="action" value="Like">Like</button>
+                    <button id="dislike-btn" class="dislike-btn" name="action" value="Dislike">Dislike</button>
+                    <span class="likes-count">0 Likes</span>
+                    <span id="dislikes-count" class="dislikes-count">0 Dislikes</span>
+                </form>
             </div>
             <div class="comments-section">
                 <h3>Comments:</h3>
@@ -32,6 +34,15 @@
                     <div class="comment">
                         <div>
                             <p><strong>{{.Author}}</strong>: {{.Content}}</p>
+                            <!-- <p>Likes: {{.Likes}} | Dislikes: {{.Dislikes}}</p>
+                            <form method="post" action="/interact">
+                                <input type="hidden" name="comment_id" value="{{.ID}}">
+                                <button type="submit" name="action" value="like">Like</button>
+                            </form>
+                            <form method="post" action="/interact">
+                                <input type="hidden" name="comment_id" value="{{.ID}}">
+                                <button type="submit" name="action" value="dislike">Dislike</button>
+                            </form> -->
                             <div>
                                 <button>like</button>
                                 <input class="reply-btn" type="checkbox" id="toggle-{{.ID}}" />
@@ -40,10 +51,21 @@
                                     <div class="reply-section">
                                         <h3>Replies:</h3>
                                         <form method="post" action="/posts">
-                                            <input class="reply-input" placeholder="Write a reply..." name="reply">
+                                            <input type="hidden" name="comment_id" value="{{.ID}}">
+                                            <input class="reply-input" placeholder="Write a reply..." name="reply"
+                                                required>
                                             <button class="submit-comment-btn">Submit</button>
                                         </form>
                                     </div>
+                                </div>
+                                <div>
+                                    <ul class="replies-list">
+                                        {{range .Replies}}
+                                        <li>
+                                            <p><strong>{{.Author}}</strong>: {{.Content}}</p>
+                                        </li>
+                                        {{end}}
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -51,9 +73,6 @@
 
                 </li>
             </ul>
-            {{end}}
-            {{range .Replies}}
-            <p><strong>{{.Author}}</strong>: {{.Content}}</p>
             {{end}}
         </div>
     </div>

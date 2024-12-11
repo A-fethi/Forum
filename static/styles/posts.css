@@ -99,12 +99,12 @@ body {
     background-color: #005f6a;
 }
 
-.comments-list {
+.comments-list, .replies-list {
     list-style-type: none;
     padding: 0;
 }
 
-.comments-list li {
+.comments-list li, .replies-list li {
     background-color: #f9f9f9;
     margin: 5px 0;
     padding: 8px;
