@@ -4,7 +4,7 @@ import "database/sql"
 
 func insertSqlComment(db *sql.DB, c Comment) (int64, error) {
 	sql := `INSERT INTO comments (user_id, Content) VALUES (?, ?);`
-	result, err := db.Exec(sql, c.Author, c.Content)
+	result, err := db.Exec(sql, c.ID, c.Content)
 	if err != nil {
 		return 0, err
 	}

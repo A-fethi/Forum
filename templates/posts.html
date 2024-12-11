@@ -14,12 +14,12 @@
             <h2 class="post-title">Post 1</h2>
             <p class="post-content">This is the content of the first post. It's a short description.</p>
             <div class="post-interactions">
-                <form method="post">
-                    <button class="like-btn" name="action" value="Like">Like</button>
-                    <button id="dislike-btn" class="dislike-btn" name="action" value="Dislike">Dislike</button>
+                <!-- <form method="post"> -->
+                    <button class="like-btn" value="Like">Like</button>
+                    <button id="dislike-btn" class="dislike-btn" value="Dislike">Dislike</button>
                     <span class="likes-count">0 Likes</span>
                     <span id="dislikes-count" class="dislikes-count">0 Dislikes</span>
-                </form>
+                <!-- </form> -->
             </div>
             <div class="comments-section">
                 <h3>Comments:</h3>
@@ -33,8 +33,8 @@
                 <li>
                     <div class="comment">
                         <div>
-                            <p><strong>{{.Author}}</strong>: {{.Content}}</p>
-                            <!-- <p>Likes: {{.Likes}} | Dislikes: {{.Dislikes}}</p>
+                            <p><strong>{{.ID}}</strong>: {{.Content}}</p>
+                            <p>Likes: {{.Likes}} | Dislikes: {{.Dislikes}}</p>
                             <form method="post" action="/interact">
                                 <input type="hidden" name="comment_id" value="{{.ID}}">
                                 <button type="submit" name="action" value="like">Like</button>
@@ -42,9 +42,9 @@
                             <form method="post" action="/interact">
                                 <input type="hidden" name="comment_id" value="{{.ID}}">
                                 <button type="submit" name="action" value="dislike">Dislike</button>
-                            </form> -->
+                            </form>
                             <div>
-                                <button>like</button>
+                                <!-- <button>like</button> -->
                                 <input class="reply-btn" type="checkbox" id="toggle-{{.ID}}" />
                                 <label class="toggle-label" for="toggle-{{.ID}}">Reply</label>
                                 <div class="content">
@@ -62,7 +62,7 @@
                                     <ul class="replies-list">
                                         {{range .Replies}}
                                         <li>
-                                            <p><strong>{{.Author}}</strong>: {{.Content}}</p>
+                                            <p><strong>{{.ID}}</strong>: {{.Content}}</p>
                                         </li>
                                         {{end}}
                                     </ul>

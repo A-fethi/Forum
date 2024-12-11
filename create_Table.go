@@ -36,6 +36,8 @@ func CreateTable(db *sql.DB) (sql.Result, error) {
 		user_id INTEGER,
 		content TEXT NOT NULL,
 		created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+		likes INTEGER DEFAULT 0,
+		dislikes INTEGER DEFAULT 0,
 		FOREIGN KEY(post_id) REFERENCES posts(id),
 		FOREIGN KEY(user_id) REFERENCES users(id)
 	);
@@ -46,6 +48,8 @@ func CreateTable(db *sql.DB) (sql.Result, error) {
 		user_id INTEGER,
 		content TEXT NOT NULL,
 		created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+		likes INTEGER DEFAULT 0,
+		dislikes INTEGER DEFAULT 0,
 		FOREIGN KEY(comment_id) REFERENCES comments(id),
 		FOREIGN KEY(user_id) REFERENCES users(id)
 	);`

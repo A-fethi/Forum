@@ -7,7 +7,6 @@ import (
 	"net/http"
 )
 
-
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodGet {
 		http.Error(w, "StatusMethodNotAllowed", http.StatusMethodNotAllowed)
@@ -20,7 +19,6 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		// HandleError(w, http.StatusNotFound)
 		return
 	}
-
 
 	db, err := sql.Open("sqlite3", "./database/database.db")
 	if err != nil {
