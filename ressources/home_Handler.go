@@ -39,7 +39,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 		Comments: comments,
 	}
 
-	tmpl, err := template.ParseFiles("templates/posts.html")
+	tmpl, err := template.ParseFiles("templates/comments.html")
 	if err != nil {
 		log.Fatal(err)
 		http.Error(w, "StatusInternalServerError", http.StatusInternalServerError)

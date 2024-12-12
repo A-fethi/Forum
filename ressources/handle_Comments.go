@@ -25,8 +25,7 @@ type PageData struct {
 	Comments []Comment
 }
 
-func HandlePosts(w http.ResponseWriter, r *http.Request) {
-	// Open the database connection
+func HandleComments(w http.ResponseWriter, r *http.Request) {
 	db, err := sql.Open("sqlite3", "./database/database.db")
 	if err != nil {
 		log.Printf("Error opening database: %v", err)
@@ -36,28 +35,25 @@ func HandlePosts(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	if r.Method == http.MethodGet {
-		// Handle GET requests to display posts
-		displayPosts(w, db)
+		displayComments(w, db)
 		return
 	}
 
 	if r.Method == http.MethodPost {
-		// Handle POST requests for comments or replies
-		handlePostRequest(w, r, db)
-		http.Redirect(w, r, "/posts", http.StatusSeeOther)
+		handleCommentRequest(w, r, db)
+		http.Redirect(w, r, "/comments", http.StatusSeeOther)
 		return
 	}
 
 	http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
 }
 
-func handlePostRequest(w http.ResponseWriter, r *http.Request, db *sql.DB) {
+func handleCommentRequest(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 	comment := r.FormValue("comment")
 	reply := r.FormValue("reply")
 	commentIDStr := r.FormValue("comment_id")
 
 	if comment != "" {
-		// Insert a new comment
 		newComment := Comment{Content: comment}
 		_, err := insertSqlComment(db, newComment)
 		if err != nil {
@@ -67,7 +63,6 @@ func handlePostRequest(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 	}
 
 	if reply != "" {
-		// Validate and insert a new reply
 		commentID, err := strconv.Atoi(commentIDStr)
 		if err != nil {
 			log.Printf("Invalid comment ID: %v", err)
@@ -83,8 +78,7 @@ func handlePostRequest(w http.ResponseWriter, r *http.Request, db *sql.DB) {
 	}
 }
 
-func displayPosts(w http.ResponseWriter, db *sql.DB) {
-	// Fetch all comments and their associated replies
+func displayComments(w http.ResponseWriter, db *sql.DB) {
 	comments, err := getAllComments(db)
 	if err != nil {
 		log.Printf("Error fetching comments: %v", err)
@@ -92,9 +86,8 @@ func displayPosts(w http.ResponseWriter, db *sql.DB) {
 		return
 	}
 
-	// Render the template with the fetched data
 	pageData := PageData{Comments: comments}
-	tmpl, err := template.ParseFiles("templates/posts.html")
+	tmpl, err := template.ParseFiles("templates/comments.html")
 	if err != nil {
 		log.Printf("Error parsing template: %v", err)
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)

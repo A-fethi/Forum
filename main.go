@@ -32,7 +32,7 @@ func main() {
 	http.HandleFunc("/", forum.HomeHandler)
 	http.HandleFunc("/login", forum.HandleLogin)
 	http.HandleFunc("/signup", forum.HandleSignup)
-	http.HandleFunc("/posts", forum.HandlePosts)
+	http.HandleFunc("/comments", forum.HandleComments)
 	http.HandleFunc("/interact", forum.ToggleInteraction)
 	fmt.Println("server listening on http://localhost:8080")
 	http.ListenAndServe(":8080", nil)

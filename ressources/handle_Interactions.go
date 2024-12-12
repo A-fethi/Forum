@@ -52,8 +52,14 @@ func ToggleInteraction(w http.ResponseWriter, r *http.Request) {
 
 		if action == "like" {
 			_, err = db.Exec(`UPDATE comments SET likes = likes + 1 WHERE id = ?`, commentID)
+			if err != nil {
+				log.Fatal(err)
+			}
 		} else {
 			_, err = db.Exec(`UPDATE comments SET dislikes = dislikes + 1 WHERE id = ?`, commentID)
+			if err != nil {
+				log.Fatal(err)
+			}
 		}
 	} else if err == nil {
 		_, err = db.Exec(
@@ -68,8 +74,14 @@ func ToggleInteraction(w http.ResponseWriter, r *http.Request) {
 
 		if action == "like" {
 			_, err = db.Exec(`UPDATE comments SET likes = likes - 1 WHERE id = ?`, commentID)
+			if err != nil {
+				log.Fatal(err)
+			}
 		} else {
 			_, err = db.Exec(`UPDATE comments SET dislikes = dislikes - 1 WHERE id = ?`, commentID)
+			if err != nil {
+				log.Fatal(err)
+			}
 		}
 	} else {
 		log.Printf("Error querying interactions: %v", err)
@@ -77,5 +89,5 @@ func ToggleInteraction(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	http.Redirect(w, r, "/posts", http.StatusSeeOther)
+	http.Redirect(w, r, "/comments", http.StatusSeeOther)
 }
