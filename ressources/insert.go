@@ -2,13 +2,14 @@ package forum
 
 import "database/sql"
 
-func insertSqlComment(db *sql.DB, c Comment) (int64, error) {
-	sql := `INSERT INTO comments (user_id, Content) VALUES (?, ?);`
-	result, err := db.Exec(sql, c.ID, c.Content)
+func insertSqlComment(db *sql.DB, c Comment) (sql.Result, error) {
+	stmt, err := db.Prepare("INSERT INTO comments (user_id, Content) VALUES (?, ?)")
 	if err != nil {
-		return 0, err
+		return nil, err
 	}
-	return result.LastInsertId()
+	defer stmt.Close()
+
+	return stmt.Exec(c.ID, c.Content)
 }
 
 func insertSqlReply(db *sql.DB, reply Reply, commentID int) (sql.Result, error) {
