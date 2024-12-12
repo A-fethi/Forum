@@ -15,8 +15,8 @@
             <p class="post-content">This is the content of the first post. It's a short description.</p>
             <div class="post-interactions">
                 <!-- <form method="post"> -->
-                    <button class="like-btn" value="Like">Like</button>
-                    <button id="dislike-btn" class="dislike-btn" value="Dislike">Dislike</button>
+                    <button class="like-btn" name="action" value="Like">Like</button>
+                    <button id="dislike-btn" name="action" class="dislike-btn" value="Dislike">Dislike</button>
                     <span class="likes-count">0 Likes</span>
                     <span id="dislikes-count" class="dislikes-count">0 Dislikes</span>
                 <!-- </form> -->
@@ -36,10 +36,13 @@
                             <p><strong>{{.ID}}</strong>: {{.Content}}</p>
                             <p>Likes: {{.Likes}} | Dislikes: {{.Dislikes}}</p>
                             <form method="post" action="/interact">
+                                <input type="hidden" name="user_id" value="15">
                                 <input type="hidden" name="comment_id" value="{{.ID}}">
                                 <button type="submit" name="action" value="like">Like</button>
                             </form>
                             <form method="post" action="/interact">
+                                <input type="hidden" name="user_id" value="14">
+
                                 <input type="hidden" name="comment_id" value="{{.ID}}">
                                 <button type="submit" name="action" value="dislike">Dislike</button>
                             </form>
@@ -77,73 +80,5 @@
         </div>
     </div>
 </body>
-<!-- <script>
-    let likeButton = document.getElementById('like-btn');
-    let dislikeButton = document.getElementById('dislike-btn')
-    let likeCount = document.querySelector('.likes-count');
-    let dislikeCount = document.getElementById('dislikes-count');
-    let like = 0;
-    let dislike = 0;
-
-    function request(reaction) {
-        let likeCount = document.querySelector('.likes-count');
-        console.log(reaction);
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", "/")
-
-        xhr.responseType = "json";
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                console.log(xhr.response);
-            } else {
-                console.log(`Error: ${xhr.status}`)
-            }
-        };
-        xhr.send(`post_id=${post_id}&reaction=${reaction}`);
-    }
-
-        function likes() {
-            if (like == 1) {
-                likeCount.innerText = like + " Like";
-            } else {
-                likeCount.innerText = like + " Likes";
-            }
-
-        }
-
-        function dislikes() {
-            if (dislike == 1) {
-                dislikeCount.innerText = dislike + " Dislike";
-            } else {
-                dislikeCount.innerText = dislike + " Dislikes";
-            }
-        }
-
-        likeButton.addEventListener('click', () => {
-            if (like >= 0) {
-                like++
-            }
-            likes()
-            likeButton.disable = true;
-            dislikeButton.disable = false;
-            if (dislike > 0) {
-                dislike--;
-                dislikes()
-            }
-        });
-
-        dislikeButton.addEventListener('click', () => {
-            if (dislike >= 0) {
-                dislike++;
-            }
-            dislikes()
-            likeButton.disable = false;
-            dislikeButton.disable = true;
-            if (like > 0) {
-                like--;
-                likes()
-            }
-        });
-</script> -->
 
 </html>

@@ -52,6 +52,15 @@ func CreateTable(db *sql.DB) (sql.Result, error) {
 		dislikes INTEGER DEFAULT 0,
 		FOREIGN KEY(comment_id) REFERENCES comments(id),
 		FOREIGN KEY(user_id) REFERENCES users(id)
+	);
+	
+	CREATE TABLE IF NOT EXISTS user_interactions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    comment_id INTEGER NOT NULL,
+    action TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(user_id, comment_id, action)
 	);`
 
 	return db.Exec(sql)
