@@ -59,8 +59,7 @@ func CreateTable(db *sql.DB) (sql.Result, error) {
     user_id INTEGER NOT NULL,
     comment_id INTEGER NOT NULL,
     action TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE(user_id, comment_id, action)
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 	);`
 
 	return db.Exec(sql)
