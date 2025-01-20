@@ -34,6 +34,7 @@ func CreateTable(db *sql.DB) (sql.Result, error) {
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		post_id INTEGER,
 		user_id INTEGER,
+		username STRING,
 		content TEXT NOT NULL,
 		created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 		likes INTEGER DEFAULT 0,

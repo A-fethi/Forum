@@ -15,69 +15,122 @@
             <p class="post-content">This is the content of the first post. It's a short description.</p>
             <div class="post-interactions">
                 <!-- <form method="post"> -->
-                    <button class="like-btn" name="action" value="Like">Like</button>
-                    <button id="dislike-btn" name="action" class="dislike-btn" value="Dislike">Dislike</button>
-                    <span class="likes-count">0 Likes</span>
-                    <span id="dislikes-count" class="dislikes-count">0 Dislikes</span>
+                <button class="like-btn" name="action" value="Like">Like</button>
+                <button id="dislike-btn" name="action" class="dislike-btn" value="Dislike">Dislike</button>
+                <span class="likes-count">0 Likes</span>
+                <span id="dislikes-count" class="dislikes-count">0 Dislikes</span>
                 <!-- </form> -->
             </div>
             <div class="comments-section">
                 <h3>Comments:</h3>
-                <form method="post" action="/comments">
+                <form id="comment-form">
+                    <input class="comment-input" placeholder="Write a comment..." name="comment" required>
+                    <button class="submit-comment-btn">Submit</button>  
+                </form>
+
+                <ul class="comments-list">
+                    {{range .Comments}}
+                    <li>
+                        <div class="comment">
+                            <p><strong>{{.ID}}</strong>: {{.Content}}</p>
+                            <span id="likes-count-{{.ID}}" class="likes-count">{{.Likes}} Likes</span>
+                            <span id="dislikes-count-{{.ID}}" class="dislikes-count">{{.Dislikes}} Dislikes</span>
+                            <button class="like-btn" data-comment-id="{{.ID}}" value="like">Like</button>
+                            <button class="dislike-btn" data-comment-id="{{.ID}}" value="dislike">Dislike</button>
+                        </div>
+                    </li>
+                    {{end}}
+                </ul>
+            </div>
+            <!-- <div class="comments-section">
+                <h3>Comments:</h3>
+                <form id="comment-form">
                     <input class="comment-input" placeholder="Write a comment..." name="comment" required>
                     <button class="submit-comment-btn">Submit</button>
                 </form>
-            </div>
-            {{range .Comments}}
+            </div> -->
+            <!-- {{range .Comments}}
             <ul class="comments-list">
                 <li>
                     <div class="comment">
                         <div>
                             <p><strong>{{.ID}}</strong>: {{.Content}}</p>
-                            <p>Likes: {{.Likes}} | Dislikes: {{.Dislikes}}</p>
-                            <form method="post" action="/interact">
-                                <input type="hidden" name="user_id" value={{.ID}}>
-                                <input type="hidden" name="comment_id" value="{{.ID}}">
-                                <button type="submit" name="action" value="like">Like</button>
-                            </form>
-                            <form method="post" action="/interact">
-                                <input type="hidden" name="user_id" value={{.ID}}>
-                                <input type="hidden" name="comment_id" value="{{.ID}}">
-                                <button type="submit" name="action" value="dislike">Dislike</button>
-                            </form>
-                            <div>
-                                <!-- <button>like</button> -->
-                                <input class="reply-btn" type="checkbox" id="toggle-{{.ID}}" />
-                                <label class="toggle-label" for="toggle-{{.ID}}">Reply</label>
-                                <div class="content">
-                                    <div class="reply-section">
-                                        <h3>Replies:</h3>
-                                        <form method="post" action="/comments">
-                                            <input type="hidden" name="comment_id" value="{{.ID}}">
-                                            <input class="reply-input" placeholder="Write a reply..." name="reply"
-                                                required>
-                                            <button class="submit-comment-btn">Submit</button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div>
-                                    <ul class="replies-list">
-                                        {{range .Replies}}
-                                        <li>
-                                            <p><strong>{{.ID}}</strong>: {{.Content}}</p>
-                                        </li>
-                                        {{end}}
-                                    </ul>
-                                </div>
-                            </div>
+                            <span id="likes-count-{{.ID}}" class="likes-count">{{.Likes}} Likes</span>
+                            <span id="dislikes-count-{{.ID}}" class="dislikes-count">{{.Dislikes}} Dislikes</span>
+                            <button class="like-btn" data-comment-id="{{.ID}}" value="like">Like</button>
+                            <button class="dislike-btn" data-comment-id="{{.ID}}" value="dislike">Dislike</button>
+
                         </div>
                     </div>
-
                 </li>
             </ul>
-            {{end}}
+            {{end}} -->
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.like-btn, .dislike-btn').forEach(button => {
+                button.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    const action = button.value.toLowerCase();
+                    const commentId = button.dataset.commentId;
+
+                    const response = await fetch('/interact', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: `user_id=51&comment_id=${commentId}&action=${action}`
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        document.querySelector(`#likes-count-${result.comment_id}`).textContent = `${result.likes} Likes`;
+                        document.querySelector(`#dislikes-count-${result.comment_id}`).textContent = `${result.dislikes} Dislikes`;
+                    } else {
+                        console.error('Failed to update interaction');
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        document.querySelector('.submit-comment-btn').addEventListener('click', async (e) => {
+            e.preventDefault();
+            const commentInput = document.querySelector('.comment-input');
+            const commentContent = commentInput.value;
+            
+
+            try {
+                const response = await fetch('/comments', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `comment=${encodeURIComponent(commentContent)}`
+                });
+
+                if (response.ok) {
+                    const newComment = await response.json();
+                    console.log(newComment);
+                    
+                    const commentList = document.querySelector('.comments-list');
+                    commentList.innerHTML += `
+                        <li>
+                            <div class="comment">
+                                <p><strong>${newComment.ID}</strong>: ${newComment.Content}</p>
+                                <span id="likes-count-${newComment.ID}" class="likes-count">0 Likes</span>
+                                <span id="dislikes-count-${newComment.ID}" class="dislikes-count">0 Dislikes</span>
+                                <button class="like-btn" data-comment-id="${newComment.ID}" value="like">Like</button>
+                                <button class="dislike-btn" data-comment-id="${newComment.ID}" value="dislike">Dislike</button>
+                            </div>
+                        </li>`;
+                    commentInput.value = '';
+                } else {
+                    console.error('Failed to submit comment');
+                }
+            } catch (error) {
+                console.error('Error submitting comment:', error);
+            }
+        });
+    </script>
+
 </body>
 
 </html>

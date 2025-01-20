@@ -2,10 +2,10 @@ package forum
 
 import (
 	"database/sql"
+	"encoding/json"
 	"html/template"
 	"log"
 	"net/http"
-	"strconv"
 )
 
 type Comment struct {
@@ -13,12 +13,6 @@ type Comment struct {
 	Content  string
 	Likes    int
 	Dislikes int
-	Replies  []Reply
-}
-
-type Reply struct {
-	ID      int
-	Content string
 }
 
 type PageData struct {
@@ -41,41 +35,97 @@ func HandleComments(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == http.MethodPost {
 		handleCommentRequest(w, r, db)
-		http.Redirect(w, r, "/comments", http.StatusSeeOther)
+		// http.Redirect(w, r, "/comments", http.StatusSeeOther)
 		return
 	}
 
 	http.Error(w, "Method Not Allowed", http.StatusMethodNotAllowed)
 }
 
+// func handleCommentRequest(w http.ResponseWriter, r *http.Request, db *sql.DB) {
+// 	comment := r.FormValue("comment")
+	// reply := r.FormValue("reply")
+	// commentIDStr := r.FormValue("comment_id")
+
+	// if comment != "" {
+	// 	newComment := Comment{Content: comment}
+	// 	_, err := insertSqlComment(db, newComment)
+	// 	if err != nil {
+	// 		log.Printf("Error inserting comment: %v", err)
+	// 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	// 	}
+	// }
+	// if comment != "" {
+	// 	newComment := Comment{Content: comment}
+	// 	result, err := insertSqlComment(db, newComment)
+	// 	if err != nil {
+	// 		log.Printf("Error inserting comment: %v", err)
+	// 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	// 		return
+	// 	}
+
+	// 	id, _ := result.LastInsertId()
+	// 	newComment.ID = int(id)
+
+	// 	w.Header().Set("Content-Type", "application/json")
+	// 	json.NewEncoder(w).Encode(newComment)
+	// 	return
+	// }
+
+	// if reply != "" {
+	// 	commentID, err := strconv.Atoi(commentIDStr)
+	// 	if err != nil {
+	// 		log.Printf("Invalid comment ID: %v", err)
+	// 		http.Error(w, "Bad Request", http.StatusBadRequest)
+	// 		return
+	// 	}
+	// 	newReply := Reply{Content: reply}
+	// 	_, err = insertSqlReply(db, newReply, commentID)
+	// 	if err != nil {
+	// 		log.Printf("Error inserting reply: %v", err)
+	// 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+	// 	}
+	// }
+// }
+
 func handleCommentRequest(w http.ResponseWriter, r *http.Request, db *sql.DB) {
-	comment := r.FormValue("comment")
-	reply := r.FormValue("reply")
-	commentIDStr := r.FormValue("comment_id")
+    comment := r.FormValue("comment")
+    if comment != "" {
+        // Use the existing insertSqlComment function
+        newComment := Comment{Content: comment}
+        result, err := insertSqlComment(db, newComment)
+        if err != nil {
+            log.Printf("Error inserting comment: %v", err)
+            http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+            return
+        }
 
-	if comment != "" {
-		newComment := Comment{Content: comment}
-		_, err := insertSqlComment(db, newComment)
-		if err != nil {
-			log.Printf("Error inserting comment: %v", err)
-			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		}
-	}
+        // Get the ID of the newly inserted comment
+        id, err := result.LastInsertId()
+        if err != nil {
+            log.Printf("Error getting last insert ID: %v", err)
+            http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+            return
+        }
 
-	if reply != "" {
-		commentID, err := strconv.Atoi(commentIDStr)
-		if err != nil {
-			log.Printf("Invalid comment ID: %v", err)
-			http.Error(w, "Bad Request", http.StatusBadRequest)
-			return
-		}
-		newReply := Reply{Content: reply}
-		_, err = insertSqlReply(db, newReply, commentID)
-		if err != nil {
-			log.Printf("Error inserting reply: %v", err)
-			http.Error(w, "Internal Server Error", http.StatusInternalServerError)
-		}
-	}
+        // Fetch the full details of the newly inserted comment
+        var insertedComment Comment
+        err = db.QueryRow("SELECT id, content, likes, dislikes FROM comments WHERE id = ?", id).Scan(
+            &insertedComment.ID, &insertedComment.Content, &insertedComment.Likes, &insertedComment.Dislikes,
+        )
+        if err != nil {
+            log.Printf("Error fetching new comment: %v", err)
+            http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+            return
+        }
+
+        // Return the new comment as JSON
+        w.Header().Set("Content-Type", "application/json")
+        json.NewEncoder(w).Encode(insertedComment)
+        return
+    }
+
+    http.Error(w, "Bad Request", http.StatusBadRequest)
 }
 
 func displayComments(w http.ResponseWriter, db *sql.DB) {
@@ -114,29 +164,7 @@ func getAllComments(db *sql.DB) ([]Comment, error) {
 		if err := rows.Scan(&comment.ID, &comment.Content, &comment.Likes, &comment.Dislikes); err != nil {
 			return nil, err
 		}
-		comment.Replies, err = getRepliesForComment(db, comment.ID)
-		if err != nil {
-			return nil, err
-		}
 		comments = append(comments, comment)
 	}
 	return comments, nil
-}
-
-func getRepliesForComment(db *sql.DB, commentID int) ([]Reply, error) {
-	rows, err := db.Query("SELECT id, content FROM replies WHERE comment_id = ? ORDER BY created_at ASC", commentID)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-
-	var replies []Reply
-	for rows.Next() {
-		var reply Reply
-		if err := rows.Scan(&reply.ID, &reply.Content); err != nil {
-			return nil, err
-		}
-		replies = append(replies, reply)
-	}
-	return replies, nil
 }
