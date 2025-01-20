@@ -25,7 +25,7 @@
                 <h3>Comments:</h3>
                 <form id="comment-form">
                     <input class="comment-input" placeholder="Write a comment..." name="comment" required>
-                    <button class="submit-comment-btn">Submit</button>  
+                    <button class="submit-comment-btn">Submit</button>
                 </form>
 
                 <ul class="comments-list">
@@ -68,36 +68,50 @@
         </div>
     </div>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        // Function to attach event listeners to "Like" and "Dislike" buttons
+        function attachInteractionListeners() {
             document.querySelectorAll('.like-btn, .dislike-btn').forEach(button => {
-                button.addEventListener('click', async (e) => {
-                    e.preventDefault();
-                    const action = button.value.toLowerCase();
-                    const commentId = button.dataset.commentId;
-
-                    const response = await fetch('/interact', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        body: `user_id=51&comment_id=${commentId}&action=${action}`
-                    });
-
-                    if (response.ok) {
-                        const result = await response.json();
-                        document.querySelector(`#likes-count-${result.comment_id}`).textContent = `${result.likes} Likes`;
-                        document.querySelector(`#dislikes-count-${result.comment_id}`).textContent = `${result.dislikes} Dislikes`;
-                    } else {
-                        console.error('Failed to update interaction');
-                    }
-                });
+                button.removeEventListener('click', handleInteraction); // Prevent duplicate listeners
+                button.addEventListener('click', handleInteraction);
             });
+        }
+
+        // Handler for "Like" and "Dislike" interactions
+        async function handleInteraction(e) {
+            e.preventDefault();
+            const button = e.target;
+            const action = button.value.toLowerCase();
+            const commentId = button.dataset.commentId;
+
+            try {
+                const response = await fetch('/interact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `user_id=51&comment_id=${commentId}&action=${action}`
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    document.querySelector(`#likes-count-${result.comment_id}`).textContent = `${result.likes} Likes`;
+                    document.querySelector(`#dislikes-count-${result.comment_id}`).textContent = `${result.dislikes} Dislikes`;
+                } else {
+                    console.error('Failed to update interaction');
+                }
+            } catch (error) {
+                console.error('Error updating interaction:', error);
+            }
+        }
+
+        // Attach listeners when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            attachInteractionListeners();
         });
-    </script>
-    <script>
+
+        // Submit comment and dynamically add it to the list
         document.querySelector('.submit-comment-btn').addEventListener('click', async (e) => {
             e.preventDefault();
             const commentInput = document.querySelector('.comment-input');
             const commentContent = commentInput.value;
-            
 
             try {
                 const response = await fetch('/comments', {
@@ -108,8 +122,6 @@
 
                 if (response.ok) {
                     const newComment = await response.json();
-                    console.log(newComment);
-                    
                     const commentList = document.querySelector('.comments-list');
                     commentList.innerHTML += `
                         <li>
@@ -121,7 +133,10 @@
                                 <button class="dislike-btn" data-comment-id="${newComment.ID}" value="dislike">Dislike</button>
                             </div>
                         </li>`;
-                    commentInput.value = '';
+                    commentInput.value = ''; // Clear the input field
+
+                    // Reattach event listeners to the newly added buttons
+                    attachInteractionListeners();
                 } else {
                     console.error('Failed to submit comment');
                 }
@@ -130,6 +145,7 @@
             }
         });
     </script>
+
 
 </body>
 
