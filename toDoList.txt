@@ -1,0 +1,5 @@
+
+3- ban access to site if JS disabled
+7- error 404 handling (working on it)
+x- Responsivity
+Y- ANything Else

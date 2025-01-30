@@ -1,0 +1,309 @@
+FORUM: 2025/01/30 15:18:29 logs.go:25: Logger created successfully
+FORUM: 2025/01/30 15:18:29 parseTemplates.go:12: Attempting to parse templates with pattern:  ./templates/*.html
+FORUM: 2025/01/30 15:18:29 parseTemplates.go:24: Templates loaded successfully
+FORUM: 2025/01/30 15:18:32 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/30 15:18:32 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/30 15:18:32 homeHandler.go:24: No session token found, user not logged in
+FORUM: 2025/01/30 15:18:32 homeHandler.go:54: Setting cookie: session_token = 
+FORUM: 2025/01/30 15:18:32 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/30 15:18:32 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/30 15:18:32 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/30 15:18:32 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/30 15:18:32 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:32 getPosts.go:158: Successfully scanned post with ID: 26
+FORUM: 2025/01/30 15:18:32 getPosts.go:161: Fetching comments for post ID: 26
+FORUM: 2025/01/30 15:18:32 getPosts.go:168: Successfully fetched comments for post ID: 26, Comments: []
+FORUM: 2025/01/30 15:18:32 getPosts.go:170: Appending post with ID: 26 to posts slice
+FORUM: 2025/01/30 15:18:32 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:32 getPosts.go:158: Successfully scanned post with ID: 25
+FORUM: 2025/01/30 15:18:32 getPosts.go:161: Fetching comments for post ID: 25
+FORUM: 2025/01/30 15:18:32 getPosts.go:168: Successfully fetched comments for post ID: 25, Comments: []
+FORUM: 2025/01/30 15:18:32 getPosts.go:170: Appending post with ID: 25 to posts slice
+FORUM: 2025/01/30 15:18:32 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:32 getPosts.go:158: Successfully scanned post with ID: 24
+FORUM: 2025/01/30 15:18:32 getPosts.go:161: Fetching comments for post ID: 24
+FORUM: 2025/01/30 15:18:32 getPosts.go:168: Successfully fetched comments for post ID: 24, Comments: []
+FORUM: 2025/01/30 15:18:32 getPosts.go:170: Appending post with ID: 24 to posts slice
+FORUM: 2025/01/30 15:18:32 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:32 getPosts.go:158: Successfully scanned post with ID: 23
+FORUM: 2025/01/30 15:18:32 getPosts.go:161: Fetching comments for post ID: 23
+FORUM: 2025/01/30 15:18:32 getPosts.go:168: Successfully fetched comments for post ID: 23, Comments: []
+FORUM: 2025/01/30 15:18:32 getPosts.go:170: Appending post with ID: 23 to posts slice
+FORUM: 2025/01/30 15:18:32 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:32 getPosts.go:158: Successfully scanned post with ID: 22
+FORUM: 2025/01/30 15:18:32 getPosts.go:161: Fetching comments for post ID: 22
+FORUM: 2025/01/30 15:18:32 getPosts.go:168: Successfully fetched comments for post ID: 22, Comments: []
+FORUM: 2025/01/30 15:18:32 getPosts.go:170: Appending post with ID: 22 to posts slice
+FORUM: 2025/01/30 15:18:32 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:32 getPosts.go:158: Successfully scanned post with ID: 21
+FORUM: 2025/01/30 15:18:32 getPosts.go:161: Fetching comments for post ID: 21
+FORUM: 2025/01/30 15:18:32 getPosts.go:168: Successfully fetched comments for post ID: 21, Comments: []
+FORUM: 2025/01/30 15:18:32 getPosts.go:170: Appending post with ID: 21 to posts slice
+FORUM: 2025/01/30 15:18:32 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:32 getPosts.go:158: Successfully scanned post with ID: 20
+FORUM: 2025/01/30 15:18:32 getPosts.go:161: Fetching comments for post ID: 20
+FORUM: 2025/01/30 15:18:32 getPosts.go:168: Successfully fetched comments for post ID: 20, Comments: []
+FORUM: 2025/01/30 15:18:32 getPosts.go:170: Appending post with ID: 20 to posts slice
+FORUM: 2025/01/30 15:18:32 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:32 getPosts.go:158: Successfully scanned post with ID: 19
+FORUM: 2025/01/30 15:18:32 getPosts.go:161: Fetching comments for post ID: 19
+FORUM: 2025/01/30 15:18:32 getPosts.go:168: Successfully fetched comments for post ID: 19, Comments: []
+FORUM: 2025/01/30 15:18:32 getPosts.go:170: Appending post with ID: 19 to posts slice
+FORUM: 2025/01/30 15:18:32 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:32 getPosts.go:158: Successfully scanned post with ID: 18
+FORUM: 2025/01/30 15:18:32 getPosts.go:161: Fetching comments for post ID: 18
+FORUM: 2025/01/30 15:18:32 getPosts.go:168: Successfully fetched comments for post ID: 18, Comments: []
+FORUM: 2025/01/30 15:18:32 getPosts.go:170: Appending post with ID: 18 to posts slice
+FORUM: 2025/01/30 15:18:32 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:32 getPosts.go:158: Successfully scanned post with ID: 17
+FORUM: 2025/01/30 15:18:32 getPosts.go:161: Fetching comments for post ID: 17
+FORUM: 2025/01/30 15:18:32 getPosts.go:168: Successfully fetched comments for post ID: 17, Comments: []
+FORUM: 2025/01/30 15:18:32 getPosts.go:170: Appending post with ID: 17 to posts slice
+FORUM: 2025/01/30 15:18:32 getPosts.go:180: Finished processing rows. Total posts fetched: 10
+FORUM: 2025/01/30 15:18:32 getPosts.go:77: Number of posts returned: 10
+FORUM: 2025/01/30 15:18:58 register.go:85: Register: Successful registration for user: test User ID: 2
+FORUM: 2025/01/30 15:18:58 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/30 15:18:58 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/30 15:18:58 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/30 15:18:58 session.go:38: SessionCheck: Session is valid for token: 0194b794-5274-7aae-b108-a6b0975424cd
+FORUM: 2025/01/30 15:18:58 homeHandler.go:47: User is logged in: {true test false}
+FORUM: 2025/01/30 15:18:58 homeHandler.go:48: User successfully logged in: test
+FORUM: 2025/01/30 15:18:58 homeHandler.go:54: Setting cookie: session_token = 0194b794-5274-7aae-b108-a6b0975424cd
+FORUM: 2025/01/30 15:18:58 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/30 15:18:58 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/30 15:18:58 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/30 15:18:58 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/30 15:18:58 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:58 getPosts.go:158: Successfully scanned post with ID: 26
+FORUM: 2025/01/30 15:18:58 getPosts.go:161: Fetching comments for post ID: 26
+FORUM: 2025/01/30 15:18:58 getPosts.go:168: Successfully fetched comments for post ID: 26, Comments: []
+FORUM: 2025/01/30 15:18:58 getPosts.go:170: Appending post with ID: 26 to posts slice
+FORUM: 2025/01/30 15:18:58 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:58 getPosts.go:158: Successfully scanned post with ID: 25
+FORUM: 2025/01/30 15:18:58 getPosts.go:161: Fetching comments for post ID: 25
+FORUM: 2025/01/30 15:18:58 getPosts.go:168: Successfully fetched comments for post ID: 25, Comments: []
+FORUM: 2025/01/30 15:18:58 getPosts.go:170: Appending post with ID: 25 to posts slice
+FORUM: 2025/01/30 15:18:58 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:58 getPosts.go:158: Successfully scanned post with ID: 24
+FORUM: 2025/01/30 15:18:58 getPosts.go:161: Fetching comments for post ID: 24
+FORUM: 2025/01/30 15:18:58 getPosts.go:168: Successfully fetched comments for post ID: 24, Comments: []
+FORUM: 2025/01/30 15:18:58 getPosts.go:170: Appending post with ID: 24 to posts slice
+FORUM: 2025/01/30 15:18:58 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:58 getPosts.go:158: Successfully scanned post with ID: 23
+FORUM: 2025/01/30 15:18:58 getPosts.go:161: Fetching comments for post ID: 23
+FORUM: 2025/01/30 15:18:58 getPosts.go:168: Successfully fetched comments for post ID: 23, Comments: []
+FORUM: 2025/01/30 15:18:58 getPosts.go:170: Appending post with ID: 23 to posts slice
+FORUM: 2025/01/30 15:18:58 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:58 getPosts.go:158: Successfully scanned post with ID: 22
+FORUM: 2025/01/30 15:18:58 getPosts.go:161: Fetching comments for post ID: 22
+FORUM: 2025/01/30 15:18:58 getPosts.go:168: Successfully fetched comments for post ID: 22, Comments: []
+FORUM: 2025/01/30 15:18:58 getPosts.go:170: Appending post with ID: 22 to posts slice
+FORUM: 2025/01/30 15:18:58 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:58 getPosts.go:158: Successfully scanned post with ID: 21
+FORUM: 2025/01/30 15:18:58 getPosts.go:161: Fetching comments for post ID: 21
+FORUM: 2025/01/30 15:18:58 getPosts.go:168: Successfully fetched comments for post ID: 21, Comments: []
+FORUM: 2025/01/30 15:18:58 getPosts.go:170: Appending post with ID: 21 to posts slice
+FORUM: 2025/01/30 15:18:58 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:58 getPosts.go:158: Successfully scanned post with ID: 20
+FORUM: 2025/01/30 15:18:58 getPosts.go:161: Fetching comments for post ID: 20
+FORUM: 2025/01/30 15:18:58 getPosts.go:168: Successfully fetched comments for post ID: 20, Comments: []
+FORUM: 2025/01/30 15:18:58 getPosts.go:170: Appending post with ID: 20 to posts slice
+FORUM: 2025/01/30 15:18:58 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:58 getPosts.go:158: Successfully scanned post with ID: 19
+FORUM: 2025/01/30 15:18:58 getPosts.go:161: Fetching comments for post ID: 19
+FORUM: 2025/01/30 15:18:58 getPosts.go:168: Successfully fetched comments for post ID: 19, Comments: []
+FORUM: 2025/01/30 15:18:58 getPosts.go:170: Appending post with ID: 19 to posts slice
+FORUM: 2025/01/30 15:18:58 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:58 getPosts.go:158: Successfully scanned post with ID: 18
+FORUM: 2025/01/30 15:18:58 getPosts.go:161: Fetching comments for post ID: 18
+FORUM: 2025/01/30 15:18:58 getPosts.go:168: Successfully fetched comments for post ID: 18, Comments: []
+FORUM: 2025/01/30 15:18:58 getPosts.go:170: Appending post with ID: 18 to posts slice
+FORUM: 2025/01/30 15:18:58 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:18:58 getPosts.go:158: Successfully scanned post with ID: 17
+FORUM: 2025/01/30 15:18:58 getPosts.go:161: Fetching comments for post ID: 17
+FORUM: 2025/01/30 15:18:58 getPosts.go:168: Successfully fetched comments for post ID: 17, Comments: []
+FORUM: 2025/01/30 15:18:58 getPosts.go:170: Appending post with ID: 17 to posts slice
+FORUM: 2025/01/30 15:18:58 getPosts.go:180: Finished processing rows. Total posts fetched: 10
+FORUM: 2025/01/30 15:18:58 getPosts.go:77: Number of posts returned: 10
+FORUM: 2025/01/30 15:19:19 session.go:38: SessionCheck: Session is valid for token: 0194b794-5274-7aae-b108-a6b0975424cd
+FORUM: 2025/01/30 15:19:19 validatePost.go:28: Validation successful for title and content
+FORUM: 2025/01/30 15:19:19 session.go:38: SessionCheck: Session is valid for token: 0194b794-5274-7aae-b108-a6b0975424cd
+FORUM: 2025/01/30 15:19:19 addPosts.go:98: Post created successfully, postID: 27
+FORUM: 2025/01/30 15:19:31 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/30 15:19:31 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/30 15:19:31 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/30 15:19:31 session.go:38: SessionCheck: Session is valid for token: 0194b794-5274-7aae-b108-a6b0975424cd
+FORUM: 2025/01/30 15:19:31 homeHandler.go:47: User is logged in: {true test false}
+FORUM: 2025/01/30 15:19:31 homeHandler.go:48: User successfully logged in: test
+FORUM: 2025/01/30 15:19:31 homeHandler.go:54: Setting cookie: session_token = 0194b794-5274-7aae-b108-a6b0975424cd
+FORUM: 2025/01/30 15:19:31 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/30 15:19:31 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/30 15:19:31 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/30 15:19:31 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/30 15:19:31 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:19:31 getPosts.go:158: Successfully scanned post with ID: 27
+FORUM: 2025/01/30 15:19:31 getPosts.go:161: Fetching comments for post ID: 27
+FORUM: 2025/01/30 15:19:31 getPosts.go:168: Successfully fetched comments for post ID: 27, Comments: []
+FORUM: 2025/01/30 15:19:31 getPosts.go:170: Appending post with ID: 27 to posts slice
+FORUM: 2025/01/30 15:19:31 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:19:31 getPosts.go:158: Successfully scanned post with ID: 26
+FORUM: 2025/01/30 15:19:31 getPosts.go:161: Fetching comments for post ID: 26
+FORUM: 2025/01/30 15:19:31 getPosts.go:168: Successfully fetched comments for post ID: 26, Comments: []
+FORUM: 2025/01/30 15:19:31 getPosts.go:170: Appending post with ID: 26 to posts slice
+FORUM: 2025/01/30 15:19:31 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:19:31 getPosts.go:158: Successfully scanned post with ID: 25
+FORUM: 2025/01/30 15:19:31 getPosts.go:161: Fetching comments for post ID: 25
+FORUM: 2025/01/30 15:19:31 getPosts.go:168: Successfully fetched comments for post ID: 25, Comments: []
+FORUM: 2025/01/30 15:19:31 getPosts.go:170: Appending post with ID: 25 to posts slice
+FORUM: 2025/01/30 15:19:31 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:19:31 getPosts.go:158: Successfully scanned post with ID: 24
+FORUM: 2025/01/30 15:19:31 getPosts.go:161: Fetching comments for post ID: 24
+FORUM: 2025/01/30 15:19:31 getPosts.go:168: Successfully fetched comments for post ID: 24, Comments: []
+FORUM: 2025/01/30 15:19:31 getPosts.go:170: Appending post with ID: 24 to posts slice
+FORUM: 2025/01/30 15:19:31 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:19:31 getPosts.go:158: Successfully scanned post with ID: 23
+FORUM: 2025/01/30 15:19:31 getPosts.go:161: Fetching comments for post ID: 23
+FORUM: 2025/01/30 15:19:31 getPosts.go:168: Successfully fetched comments for post ID: 23, Comments: []
+FORUM: 2025/01/30 15:19:31 getPosts.go:170: Appending post with ID: 23 to posts slice
+FORUM: 2025/01/30 15:19:31 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:19:31 getPosts.go:158: Successfully scanned post with ID: 22
+FORUM: 2025/01/30 15:19:31 getPosts.go:161: Fetching comments for post ID: 22
+FORUM: 2025/01/30 15:19:31 getPosts.go:168: Successfully fetched comments for post ID: 22, Comments: []
+FORUM: 2025/01/30 15:19:31 getPosts.go:170: Appending post with ID: 22 to posts slice
+FORUM: 2025/01/30 15:19:31 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:19:31 getPosts.go:158: Successfully scanned post with ID: 21
+FORUM: 2025/01/30 15:19:31 getPosts.go:161: Fetching comments for post ID: 21
+FORUM: 2025/01/30 15:19:31 getPosts.go:168: Successfully fetched comments for post ID: 21, Comments: []
+FORUM: 2025/01/30 15:19:31 getPosts.go:170: Appending post with ID: 21 to posts slice
+FORUM: 2025/01/30 15:19:31 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:19:31 getPosts.go:158: Successfully scanned post with ID: 20
+FORUM: 2025/01/30 15:19:31 getPosts.go:161: Fetching comments for post ID: 20
+FORUM: 2025/01/30 15:19:31 getPosts.go:168: Successfully fetched comments for post ID: 20, Comments: []
+FORUM: 2025/01/30 15:19:31 getPosts.go:170: Appending post with ID: 20 to posts slice
+FORUM: 2025/01/30 15:19:31 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:19:31 getPosts.go:158: Successfully scanned post with ID: 19
+FORUM: 2025/01/30 15:19:31 getPosts.go:161: Fetching comments for post ID: 19
+FORUM: 2025/01/30 15:19:31 getPosts.go:168: Successfully fetched comments for post ID: 19, Comments: []
+FORUM: 2025/01/30 15:19:31 getPosts.go:170: Appending post with ID: 19 to posts slice
+FORUM: 2025/01/30 15:19:31 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:19:31 getPosts.go:158: Successfully scanned post with ID: 18
+FORUM: 2025/01/30 15:19:31 getPosts.go:161: Fetching comments for post ID: 18
+FORUM: 2025/01/30 15:19:31 getPosts.go:168: Successfully fetched comments for post ID: 18, Comments: []
+FORUM: 2025/01/30 15:19:31 getPosts.go:170: Appending post with ID: 18 to posts slice
+FORUM: 2025/01/30 15:19:31 getPosts.go:180: Finished processing rows. Total posts fetched: 10
+FORUM: 2025/01/30 15:19:31 getPosts.go:77: Number of posts returned: 10
+FORUM: 2025/01/30 15:20:05 getPosts.go:23: Request URL Path: /api/posts/created
+FORUM: 2025/01/30 15:20:05 getPosts.go:27: Requested Page: created
+FORUM: 2025/01/30 15:20:05 fetch_Created_Posts.go:18: Fetching posts created by user 'test'. Executing query: 
+		SELECT username, id, title, content, Categories, created_at, likes, dislikes
+		FROM posts
+		WHERE username = ?
+		ORDER BY created_at DESC
+	
+FORUM: 2025/01/30 15:20:05 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/30 15:20:05 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:20:05 getPosts.go:158: Successfully scanned post with ID: 27
+FORUM: 2025/01/30 15:20:05 getPosts.go:161: Fetching comments for post ID: 27
+FORUM: 2025/01/30 15:20:05 getPosts.go:168: Successfully fetched comments for post ID: 27, Comments: []
+FORUM: 2025/01/30 15:20:05 getPosts.go:170: Appending post with ID: 27 to posts slice
+FORUM: 2025/01/30 15:20:05 getPosts.go:180: Finished processing rows. Total posts fetched: 1
+FORUM: 2025/01/30 15:20:05 fetch_Created_Posts.go:29: Successfully fetched posts created by user 'test'
+FORUM: 2025/01/30 15:20:05 getPosts.go:77: Number of posts returned: 1
+FORUM: 2025/01/30 15:20:09 getPosts.go:23: Request URL Path: /api/posts/created
+FORUM: 2025/01/30 15:20:09 getPosts.go:27: Requested Page: created
+FORUM: 2025/01/30 15:20:09 fetch_Created_Posts.go:18: Fetching posts created by user 'test'. Executing query: 
+		SELECT username, id, title, content, Categories, created_at, likes, dislikes
+		FROM posts
+		WHERE username = ?
+		ORDER BY created_at DESC
+	
+FORUM: 2025/01/30 15:20:09 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/30 15:20:09 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:20:09 getPosts.go:158: Successfully scanned post with ID: 27
+FORUM: 2025/01/30 15:20:09 getPosts.go:161: Fetching comments for post ID: 27
+FORUM: 2025/01/30 15:20:09 getPosts.go:168: Successfully fetched comments for post ID: 27, Comments: []
+FORUM: 2025/01/30 15:20:09 getPosts.go:170: Appending post with ID: 27 to posts slice
+FORUM: 2025/01/30 15:20:09 getPosts.go:180: Finished processing rows. Total posts fetched: 1
+FORUM: 2025/01/30 15:20:09 fetch_Created_Posts.go:29: Successfully fetched posts created by user 'test'
+FORUM: 2025/01/30 15:20:09 getPosts.go:77: Number of posts returned: 1
+FORUM: 2025/01/30 15:20:10 getPosts.go:23: Request URL Path: /api/posts/liked
+FORUM: 2025/01/30 15:20:10 getPosts.go:27: Requested Page: liked
+FORUM: 2025/01/30 15:20:10 fetch_Created_Posts.go:48: Fetching posts liked by user 'test'. Executing query: 
+		SELECT posts.username, 
+    		posts.id AS post_id, 
+    		posts.title, 
+    		posts.content, 
+    		posts.Categories, 
+    		posts.created_at, 
+    		posts.likes, 
+    		posts.dislikes
+		FROM posts
+		JOIN user_interactions ON posts.id = user_interactions.item_id
+		WHERE posts.username = ? AND user_interactions.item_type = "post" AND user_interactions.action = "like"
+		ORDER BY posts.created_at DESC
+	
+FORUM: 2025/01/30 15:20:10 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/30 15:20:10 getPosts.go:180: Finished processing rows. Total posts fetched: 0
+FORUM: 2025/01/30 15:20:10 fetch_Created_Posts.go:59: Successfully fetched posts liked by user 'test'
+FORUM: 2025/01/30 15:20:11 getPosts.go:23: Request URL Path: /api/posts/liked
+FORUM: 2025/01/30 15:20:11 getPosts.go:27: Requested Page: liked
+FORUM: 2025/01/30 15:20:11 fetch_Created_Posts.go:48: Fetching posts liked by user 'test'. Executing query: 
+		SELECT posts.username, 
+    		posts.id AS post_id, 
+    		posts.title, 
+    		posts.content, 
+    		posts.Categories, 
+    		posts.created_at, 
+    		posts.likes, 
+    		posts.dislikes
+		FROM posts
+		JOIN user_interactions ON posts.id = user_interactions.item_id
+		WHERE posts.username = ? AND user_interactions.item_type = "post" AND user_interactions.action = "like"
+		ORDER BY posts.created_at DESC
+	
+FORUM: 2025/01/30 15:20:11 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/30 15:20:11 getPosts.go:180: Finished processing rows. Total posts fetched: 0
+FORUM: 2025/01/30 15:20:11 fetch_Created_Posts.go:59: Successfully fetched posts liked by user 'test'
+FORUM: 2025/01/30 15:20:12 getPosts.go:23: Request URL Path: /api/posts/created
+FORUM: 2025/01/30 15:20:12 getPosts.go:27: Requested Page: created
+FORUM: 2025/01/30 15:20:12 fetch_Created_Posts.go:18: Fetching posts created by user 'test'. Executing query: 
+		SELECT username, id, title, content, Categories, created_at, likes, dislikes
+		FROM posts
+		WHERE username = ?
+		ORDER BY created_at DESC
+	
+FORUM: 2025/01/30 15:20:12 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/30 15:20:12 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:20:12 getPosts.go:158: Successfully scanned post with ID: 27
+FORUM: 2025/01/30 15:20:12 getPosts.go:161: Fetching comments for post ID: 27
+FORUM: 2025/01/30 15:20:12 getPosts.go:168: Successfully fetched comments for post ID: 27, Comments: []
+FORUM: 2025/01/30 15:20:12 getPosts.go:170: Appending post with ID: 27 to posts slice
+FORUM: 2025/01/30 15:20:12 getPosts.go:180: Finished processing rows. Total posts fetched: 1
+FORUM: 2025/01/30 15:20:12 fetch_Created_Posts.go:29: Successfully fetched posts created by user 'test'
+FORUM: 2025/01/30 15:20:12 getPosts.go:77: Number of posts returned: 1
+FORUM: 2025/01/30 15:20:13 getPosts.go:23: Request URL Path: /api/posts/created
+FORUM: 2025/01/30 15:20:13 getPosts.go:27: Requested Page: created
+FORUM: 2025/01/30 15:20:13 fetch_Created_Posts.go:18: Fetching posts created by user 'test'. Executing query: 
+		SELECT username, id, title, content, Categories, created_at, likes, dislikes
+		FROM posts
+		WHERE username = ?
+		ORDER BY created_at DESC
+	
+FORUM: 2025/01/30 15:20:13 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/30 15:20:13 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/30 15:20:13 getPosts.go:158: Successfully scanned post with ID: 27
+FORUM: 2025/01/30 15:20:13 getPosts.go:161: Fetching comments for post ID: 27
+FORUM: 2025/01/30 15:20:13 getPosts.go:168: Successfully fetched comments for post ID: 27, Comments: []
+FORUM: 2025/01/30 15:20:13 getPosts.go:170: Appending post with ID: 27 to posts slice
+FORUM: 2025/01/30 15:20:13 getPosts.go:180: Finished processing rows. Total posts fetched: 1
+FORUM: 2025/01/30 15:20:13 fetch_Created_Posts.go:29: Successfully fetched posts created by user 'test'
+FORUM: 2025/01/30 15:20:13 getPosts.go:77: Number of posts returned: 1
