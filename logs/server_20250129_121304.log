@@ -1,0 +1,392 @@
+FORUM: 2025/01/29 12:13:04 logs.go:25: Logger created successfully
+FORUM: 2025/01/29 12:13:04 parseTemplates.go:12: Attempting to parse templates with pattern:  ./templates/*.html
+FORUM: 2025/01/29 12:13:04 parseTemplates.go:24: Templates loaded successfully
+FORUM: 2025/01/29 12:13:16 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:16 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:16 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:16 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:16 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:16 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:16 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:16 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/29 12:13:16 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/29 12:13:16 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/29 12:13:16 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/29 12:13:16 getPosts.go:180: Finished processing rows. Total posts fetched: 0
+FORUM: 2025/01/29 12:13:19 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:19 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:19 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:19 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:19 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:19 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:19 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:19 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/29 12:13:19 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/29 12:13:19 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/29 12:13:19 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/29 12:13:19 getPosts.go:180: Finished processing rows. Total posts fetched: 0
+FORUM: 2025/01/29 12:13:20 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:20 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:20 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:20 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:20 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:20 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:20 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:20 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/29 12:13:20 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/29 12:13:20 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/29 12:13:20 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/29 12:13:20 getPosts.go:180: Finished processing rows. Total posts fetched: 0
+FORUM: 2025/01/29 12:13:20 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:20 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:20 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:20 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:20 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:20 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:20 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:20 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/29 12:13:20 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/29 12:13:20 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/29 12:13:20 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/29 12:13:20 getPosts.go:180: Finished processing rows. Total posts fetched: 0
+FORUM: 2025/01/29 12:13:25 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:25 validatePost.go:28: Validation successful for title and content
+FORUM: 2025/01/29 12:13:25 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:25 addPosts.go:98: Post created successfully, postID: 2
+FORUM: 2025/01/29 12:13:27 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:27 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:27 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:27 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:27 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:27 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:27 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:27 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/29 12:13:27 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/29 12:13:27 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/29 12:13:27 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/29 12:13:27 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/29 12:13:27 getPosts.go:158: Successfully scanned post with ID: 2
+FORUM: 2025/01/29 12:13:27 getPosts.go:161: Fetching comments for post ID: 2
+FORUM: 2025/01/29 12:13:27 getPosts.go:168: Successfully fetched comments for post ID: 2, Comments: []
+FORUM: 2025/01/29 12:13:27 getPosts.go:170: Appending post with ID: 2 to posts slice
+FORUM: 2025/01/29 12:13:27 getPosts.go:180: Finished processing rows. Total posts fetched: 1
+FORUM: 2025/01/29 12:13:27 getPosts.go:77: Number of posts returned: 1
+FORUM: 2025/01/29 12:13:28 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:28 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:28 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:28 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:28 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:28 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:28 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:28 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/29 12:13:28 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/29 12:13:28 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/29 12:13:28 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/29 12:13:28 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/29 12:13:28 getPosts.go:158: Successfully scanned post with ID: 2
+FORUM: 2025/01/29 12:13:28 getPosts.go:161: Fetching comments for post ID: 2
+FORUM: 2025/01/29 12:13:28 getPosts.go:168: Successfully fetched comments for post ID: 2, Comments: []
+FORUM: 2025/01/29 12:13:28 getPosts.go:170: Appending post with ID: 2 to posts slice
+FORUM: 2025/01/29 12:13:28 getPosts.go:180: Finished processing rows. Total posts fetched: 1
+FORUM: 2025/01/29 12:13:28 getPosts.go:77: Number of posts returned: 1
+FORUM: 2025/01/29 12:13:30 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:30 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:30 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:30 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:30 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:30 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:30 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:30 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/29 12:13:30 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/29 12:13:30 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/29 12:13:30 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/29 12:13:30 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/29 12:13:30 getPosts.go:158: Successfully scanned post with ID: 2
+FORUM: 2025/01/29 12:13:30 getPosts.go:161: Fetching comments for post ID: 2
+FORUM: 2025/01/29 12:13:30 getPosts.go:168: Successfully fetched comments for post ID: 2, Comments: []
+FORUM: 2025/01/29 12:13:30 getPosts.go:170: Appending post with ID: 2 to posts slice
+FORUM: 2025/01/29 12:13:30 getPosts.go:180: Finished processing rows. Total posts fetched: 1
+FORUM: 2025/01/29 12:13:30 getPosts.go:77: Number of posts returned: 1
+FORUM: 2025/01/29 12:13:31 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:31 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:31 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:31 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:31 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:31 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:31 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:31 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/29 12:13:31 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/29 12:13:31 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/29 12:13:31 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/29 12:13:31 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/29 12:13:31 getPosts.go:158: Successfully scanned post with ID: 2
+FORUM: 2025/01/29 12:13:31 getPosts.go:161: Fetching comments for post ID: 2
+FORUM: 2025/01/29 12:13:31 getPosts.go:168: Successfully fetched comments for post ID: 2, Comments: []
+FORUM: 2025/01/29 12:13:31 getPosts.go:170: Appending post with ID: 2 to posts slice
+FORUM: 2025/01/29 12:13:31 getPosts.go:180: Finished processing rows. Total posts fetched: 1
+FORUM: 2025/01/29 12:13:31 getPosts.go:77: Number of posts returned: 1
+FORUM: 2025/01/29 12:13:31 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:31 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:31 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:31 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:31 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:31 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:31 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:31 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:31 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:31 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:31 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:31 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:31 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:31 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:31 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:31 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:31 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:31 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:31 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:31 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:31 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:31 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:31 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:31 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:34 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:34 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:34 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:34 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:34 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:34 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:34 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:34 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/29 12:13:34 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/29 12:13:34 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/29 12:13:34 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/29 12:13:34 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/29 12:13:34 getPosts.go:158: Successfully scanned post with ID: 2
+FORUM: 2025/01/29 12:13:34 getPosts.go:161: Fetching comments for post ID: 2
+FORUM: 2025/01/29 12:13:34 getPosts.go:168: Successfully fetched comments for post ID: 2, Comments: []
+FORUM: 2025/01/29 12:13:34 getPosts.go:170: Appending post with ID: 2 to posts slice
+FORUM: 2025/01/29 12:13:34 getPosts.go:180: Finished processing rows. Total posts fetched: 1
+FORUM: 2025/01/29 12:13:34 getPosts.go:77: Number of posts returned: 1
+FORUM: 2025/01/29 12:13:34 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:34 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:34 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:34 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:34 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:34 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:34 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:35 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/29 12:13:35 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/29 12:13:35 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/29 12:13:35 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/29 12:13:35 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/29 12:13:35 getPosts.go:158: Successfully scanned post with ID: 2
+FORUM: 2025/01/29 12:13:35 getPosts.go:161: Fetching comments for post ID: 2
+FORUM: 2025/01/29 12:13:35 getPosts.go:168: Successfully fetched comments for post ID: 2, Comments: []
+FORUM: 2025/01/29 12:13:35 getPosts.go:170: Appending post with ID: 2 to posts slice
+FORUM: 2025/01/29 12:13:35 getPosts.go:180: Finished processing rows. Total posts fetched: 1
+FORUM: 2025/01/29 12:13:35 getPosts.go:77: Number of posts returned: 1
+FORUM: 2025/01/29 12:13:35 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:35 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:35 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:35 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:35 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:35 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:35 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:35 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/29 12:13:35 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/29 12:13:35 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/29 12:13:35 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/29 12:13:35 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/29 12:13:35 getPosts.go:158: Successfully scanned post with ID: 2
+FORUM: 2025/01/29 12:13:35 getPosts.go:161: Fetching comments for post ID: 2
+FORUM: 2025/01/29 12:13:35 getPosts.go:168: Successfully fetched comments for post ID: 2, Comments: []
+FORUM: 2025/01/29 12:13:35 getPosts.go:170: Appending post with ID: 2 to posts slice
+FORUM: 2025/01/29 12:13:35 getPosts.go:180: Finished processing rows. Total posts fetched: 1
+FORUM: 2025/01/29 12:13:35 getPosts.go:77: Number of posts returned: 1
+FORUM: 2025/01/29 12:13:36 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:36 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:36 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:36 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:36 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:36 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:36 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:36 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/29 12:13:36 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/29 12:13:36 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/29 12:13:36 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/29 12:13:36 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/29 12:13:36 getPosts.go:158: Successfully scanned post with ID: 2
+FORUM: 2025/01/29 12:13:36 getPosts.go:161: Fetching comments for post ID: 2
+FORUM: 2025/01/29 12:13:36 getPosts.go:168: Successfully fetched comments for post ID: 2, Comments: []
+FORUM: 2025/01/29 12:13:36 getPosts.go:170: Appending post with ID: 2 to posts slice
+FORUM: 2025/01/29 12:13:36 getPosts.go:180: Finished processing rows. Total posts fetched: 1
+FORUM: 2025/01/29 12:13:36 getPosts.go:77: Number of posts returned: 1
+FORUM: 2025/01/29 12:13:37 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:37 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:37 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:37 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:37 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:37 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:37 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:37 getPosts.go:23: Request URL Path: /api/posts
+FORUM: 2025/01/29 12:13:37 getPosts.go:55: Fetching posts for page 1
+FORUM: 2025/01/29 12:13:37 getPosts.go:133: Executing query: SELECT username, id, title, content, Categories, created_at, likes, dislikes 
+              FROM posts 
+              ORDER BY created_at DESC 
+              LIMIT ? OFFSET ? with limit 10 and offset 0
+FORUM: 2025/01/29 12:13:37 getPosts.go:146: Starting to process rows...
+FORUM: 2025/01/29 12:13:37 getPosts.go:151: Scanning row for post...
+FORUM: 2025/01/29 12:13:37 getPosts.go:158: Successfully scanned post with ID: 2
+FORUM: 2025/01/29 12:13:37 getPosts.go:161: Fetching comments for post ID: 2
+FORUM: 2025/01/29 12:13:37 getPosts.go:168: Successfully fetched comments for post ID: 2, Comments: []
+FORUM: 2025/01/29 12:13:37 getPosts.go:170: Appending post with ID: 2 to posts slice
+FORUM: 2025/01/29 12:13:37 getPosts.go:180: Finished processing rows. Total posts fetched: 1
+FORUM: 2025/01/29 12:13:37 getPosts.go:77: Number of posts returned: 1
+FORUM: 2025/01/29 12:13:37 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:37 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:37 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:37 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:37 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:37 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:37 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:37 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:39 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:39 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:39 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:39 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:39 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:39 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:39 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:40 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:40 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:40 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:40 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:40 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:40 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:40 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:40 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:40 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:40 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:40 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:40 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:40 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:40 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:40 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:40 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:40 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:40 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:40 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:40 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:40 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:40 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:40 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:40 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:41 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:41 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:41 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:41 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:41 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:41 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:41 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:41 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:41 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:41 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:41 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:41 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:41 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:41 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:41 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:41 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:41 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:41 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:41 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:41 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:41 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:41 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:41 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:41 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:41 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:41 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:41 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:41 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:41 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:41 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:41 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:41 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:41 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:42 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:42 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:42 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:42 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:42 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:42 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:42 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:42 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:42 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:42 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:42 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:42 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:42 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:42 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:42 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:42 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:42 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:42 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:42 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:42 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:42 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:42 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:42 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:42 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:42 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:42 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:42 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:42 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:42 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:42 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:42 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:42 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!
+FORUM: 2025/01/29 12:13:43 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:13:43 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:13:43 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:13:43 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:43 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:13:43 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:13:43 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:13:43 rateLimiter.go:36: IP:  ::1  Exceed the request limit!!

@@ -1,0 +1,3 @@
+FORUM: 2025/01/29 14:38:49 logs.go:25: Logger created successfully
+FORUM: 2025/01/29 14:38:49 parseTemplates.go:12: Attempting to parse templates with pattern:  ./templates/*.html
+FORUM: 2025/01/29 14:38:49 parseTemplates.go:24: Templates loaded successfully

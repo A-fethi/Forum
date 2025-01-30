@@ -7,12 +7,6 @@ import { checkPost } from "./addposts.js";
 
 export const Home = async () => {
     console.log("Initializing Home function...");
-    const loadMoreButton = document.getElementById('load-more');
-    console.log(loadMoreButton)
-    if (loadMoreButton) {
-        loadMoreButton.style.display = 'block';
-    }
-
 
     logout();
 
@@ -28,7 +22,7 @@ export const Home = async () => {
 
         if (!resp.ok) {
             console.error("Failed to fetch posts, response not ok.");
-            // postsElement.textContent = "No Posts Found";
+            postsElement.textContent = "No Posts Found";
             showNotification("No posts found", "error");
             return;
         }
@@ -38,17 +32,11 @@ export const Home = async () => {
 
         if (!posts || posts.length === 0) {
             console.warn("No posts available.");
-            // postsElement.textContent = "No Posts Available";
+            postsElement.textContent = "No Posts Available";
             showNotification("No posts found", "error");
             return;
         }
-        if (loadMoreButton) {
-            if (posts.length < 10) {
-                loadMoreButton.style.display = 'none';
-            } else {
-                loadMoreButton.style.display = 'block';
-            }
-        }
+
         postsElement.replaceChildren();
         posts.forEach((post) => {
             console.log("Processing post:", post);
@@ -63,7 +51,7 @@ export const Home = async () => {
                 commentsList.appendChild(commentElement);
             });
         });
-        
+
         console.log("Comment functionality initialized.");
 
         filterCat();

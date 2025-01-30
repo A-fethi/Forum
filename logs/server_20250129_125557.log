@@ -1,0 +1,10 @@
+FORUM: 2025/01/29 12:55:57 logs.go:25: Logger created successfully
+FORUM: 2025/01/29 12:55:57 parseTemplates.go:12: Attempting to parse templates with pattern:  ./templates/*.html
+FORUM: 2025/01/29 12:55:57 parseTemplates.go:24: Templates loaded successfully
+FORUM: 2025/01/29 12:56:00 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 12:56:00 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 12:56:00 homeHandler.go:30: Session token found, verifying...
+FORUM: 2025/01/29 12:56:00 session.go:38: SessionCheck: Session is valid for token: 0194b1b5-a2ca-7eee-81d0-5c9a33dca617
+FORUM: 2025/01/29 12:56:00 homeHandler.go:47: User is logged in: {true aaa false}
+FORUM: 2025/01/29 12:56:00 homeHandler.go:48: User successfully logged in: aaa
+FORUM: 2025/01/29 12:56:00 homeHandler.go:54: Setting cookie: session_token = 0194b1b5-a2ca-7eee-81d0-5c9a33dca617

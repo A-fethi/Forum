@@ -1,6 +1,5 @@
 import { createPostElement } from "./posts.js";
 
-let currentPage = 1
 
 export const filterCat = (page = 1) => {
     let selectedCategories = [];
@@ -15,36 +14,32 @@ export const filterCat = (page = 1) => {
             const resp = await fetch(url);
             if (!resp.ok) {
                 console.log("Error fetching posts from API");
-                return;
+                return
             }
 
             const posts = await resp.json();
             if (posts.length === 0) {
                 postsContainer.textContent = "No Posts Available";
-                if (loadMoreButton) {
-                    loadMoreButton.style.display = 'none';
-                }
-                return;
+                return
             }
-            
-            posts.forEach((post) => {
-                const postElement = createPostElement(post);
-                postsContainer.appendChild(postElement);
-            });
 
-            if (loadMoreButton) {
-                if (posts.length < 10) {
-                    loadMoreButton.style.display = 'none';
-                } else {
-                    loadMoreButton.style.display = 'block';
+            posts.forEach((post) => {
+                const postElement = createPostElement(post)
+                postsContainer.appendChild(postElement)
+            })
+
+            if (posts.length < 10) {
+                if (loadMoreButton) {
+                    loadMoreButton.disabled = true
+                    loadMoreButton.style.opacity = 0.7
                 }
             }
         } catch (error) {
             console.log("Error fetching posts:", error);
         }
-    };
+    }
 
-    let currentPage = page;
+    let currentPage = page
 
     loadMoreButton?.addEventListener('click', () => {
         currentPage++;
@@ -67,19 +62,12 @@ export const filterCat = (page = 1) => {
 
             if (posts.length === 0) {
                 postsContainer.textContent = "No Liked Posts Available";
-                if (loadMoreButton) {
-                    loadMoreButton.style.display = 'none';
-                }
                 return;
             } else {
                 posts.forEach((post) => {
                     const postElement = createPostElement(post);
                     postsContainer.appendChild(postElement);
                 });
-                
-                if (loadMoreButton) {
-                    loadMoreButton.style.display = posts.length >= 10 ? 'block' : 'none';
-                }
             }
         } catch (error) {
             console.error("Error fetching user liked posts:", error);
@@ -99,19 +87,12 @@ export const filterCat = (page = 1) => {
 
             if (posts.length === 0) {
                 postsContainer.textContent = "No Posts Available";
-                if (loadMoreButton) {
-                    loadMoreButton.style.display = 'none';
-                }
                 return;
             } else {
                 posts.forEach((post) => {
                     const postElement = createPostElement(post);
                     postsContainer.appendChild(postElement);
                 });
-                
-                if (loadMoreButton) {
-                    loadMoreButton.style.display = posts.length >= 10 ? 'block' : 'none';
-                }
             }
         } catch (error) {
             console.error("Error fetching user posts:", error);
@@ -119,7 +100,6 @@ export const filterCat = (page = 1) => {
     });
 
     categoryList.addEventListener("click", async (event) => {
-        page = 1
         if (event.target.tagName === "LI") {
             let value = event.target.textContent.trim();
 
@@ -148,22 +128,14 @@ export const filterCat = (page = 1) => {
                 const posts = await resp.json();
                 postsContainer.replaceChildren();
                 console.log("Posts:", posts);
-                
                 if (posts.length === 0) {
                     postsContainer.textContent = "No Posts Available";
-                    if (loadMoreButton) {
-                        loadMoreButton.style.display = 'none';
-                    }
                     return;
                 } else {
                     posts.forEach((post) => {
                         const postElement = createPostElement(post);
                         postsContainer.appendChild(postElement);
                     });
-                    
-                    if (loadMoreButton) {
-                        loadMoreButton.style.display = posts.length >= 10 ? 'block' : 'none';
-                    }
                 }
                 
             } catch (error) {

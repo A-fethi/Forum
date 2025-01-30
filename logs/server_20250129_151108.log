@@ -1,0 +1,7 @@
+FORUM: 2025/01/29 15:11:08 logs.go:25: Logger created successfully
+FORUM: 2025/01/29 15:11:08 parseTemplates.go:12: Attempting to parse templates with pattern:  ./templates/*.html
+FORUM: 2025/01/29 15:11:08 parseTemplates.go:24: Templates loaded successfully
+FORUM: 2025/01/29 15:11:09 homeHandler.go:13: Handling request for Home page
+FORUM: 2025/01/29 15:11:09 homeHandler.go:21: Checking for session token
+FORUM: 2025/01/29 15:11:09 homeHandler.go:24: No session token found, user not logged in
+FORUM: 2025/01/29 15:11:09 homeHandler.go:54: Setting cookie: session_token = 
