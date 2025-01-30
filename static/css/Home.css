@@ -155,6 +155,8 @@ html {
   font-weight: 700;
   color: #1a1a1a;
   margin-bottom: 8px;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .post-author {
@@ -478,6 +480,7 @@ html {
   margin-bottom: 20px;
   border-top: 1px solid #e5e7eb;
 }
+
 /* 
 .header {
   background: #2563eb;
@@ -666,7 +669,25 @@ html {
   box-shadow: 0 0 6px rgba(0, 121, 211, 0.3);
 }
 
+.fa-home {
+  color: #B0B0B0;
+}
 
+.fa-microchip {
+  color: #00CCCC;
+}
+
+.fa-gamepad {
+  color: #FF6347;
+}
+
+.fa-heart-pulse {
+  color: #56C27C;
+}
+
+.fa-book-open {
+  color: #FFD700;
+}
 
 .general {
   color: black;

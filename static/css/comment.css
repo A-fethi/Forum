@@ -10,27 +10,6 @@
   gap: 9px;
   justify-content: space-between;
   align-items: center;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
-.comment p {
-    margin: 0;
-    font-size: 14px;
-    color: #333;
-  padding: 15px;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 14px;
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  gap: 9px;
-  justify-content: space-between;
-  align-items: center;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
 }
 
 .comment p {
@@ -39,7 +18,7 @@
   max-width: 100%;
   overflow-wrap: break-word;
   word-break: break-word;
-  flex: 1; 
+  flex: 1;
 }
 
 .comment strong {
@@ -135,7 +114,7 @@
   }
 
   .comment p {
-    font-size: 10px;
+    font-size: 13px;
   }
 
   .comment button {
@@ -144,9 +123,12 @@
   }
 
   .interactions-container {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: 8px;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   .comment-item {

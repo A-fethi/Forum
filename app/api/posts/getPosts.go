@@ -8,7 +8,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"time"
 
 	"forum/app/api/comments"
 	"forum/app/config"
@@ -52,7 +51,7 @@ func GetPosts(resp http.ResponseWriter, req *http.Request, db *sql.DB) []byte {
 		token, _ := utils.GetSessionToken(req)
 		_, userName, _ := utils.GetUsernameByToken(token, db)
 		err = fetchUserLikedPosts(&posts, userName, db)
-	} else if req.URL.Path == "/api/posts" || req.URL.Path == "/api/posts/" {
+	} else if req.URL.Path == "/api/posts" || strings.HasPrefix(req.URL.Path, "/api/posts/") {
 		config.Logger.Printf("Fetching posts for page %d", page)
 		err = fetchAllPosts(&posts, page, db)
 	} else {
@@ -150,13 +149,12 @@ func rowsProcess(rows *sql.Rows, posts *[]models.Post, db *sql.DB) error {
 		var post models.Post
 
 		config.Logger.Printf("Scanning row for post...")
-		var creationTime time.Time
-		if err := rows.Scan(&post.Username, &post.ID, &post.Title, &post.Content, &post.Categories, &creationTime, &post.Likes, &post.Dislikes); err != nil {
+
+		if err := rows.Scan(&post.Username, &post.ID, &post.Title, &post.Content, &post.Categories, &post.CreatedAt, &post.Likes, &post.Dislikes); err != nil {
 			log.Printf("Error scanning post: %v", err)
 			return fmt.Errorf("error scanning post: %v", err)
 		}
-		post.CreatedAt = utils.TimeAgo(creationTime)
-		config.Logger.Println(post.CreatedAt)
+
 		config.Logger.Printf("Successfully scanned post with ID: %d", post.ID)
 
 		var err error
@@ -171,7 +169,6 @@ func rowsProcess(rows *sql.Rows, posts *[]models.Post, db *sql.DB) error {
 
 		config.Logger.Printf("Appending post with ID: %d to posts slice", post.ID)
 		*posts = append(*posts, post)
-
 	}
 
 	if err := rows.Err(); err != nil {
