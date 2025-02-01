@@ -14,6 +14,9 @@ import (
 )
 
 func AddPost(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
+	var (
+		postID int
+	)
 	// Ensure the user is authenticated before proceeding
 	if !auth.SessionCheck(resp, req, db) {
 		http.Error(resp, "User not authenticated", http.StatusUnauthorized)
@@ -59,28 +62,15 @@ func AddPost(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	title := request.Title
 	postContent := request.PostContent
 
-	_, err = db.Exec(`
+	err = db.QueryRow(`
 		INSERT INTO posts (username, title, content, categories, created_at)
-		VALUES (?, ?, ?, ?, ?)`,
-		username, title, postContent, strings.Join(request.Categories, " "), time.Now().Format("2006-01-02 15:04:05"))
+		VALUES (?, ?, ?, ?, ?)
+		RETURNING id`,
+		username, title, postContent, strings.Join(request.Categories, " "), time.Now()).Scan(&postID)
 	if err != nil {
 		config.Logger.Println("Failed to insert post:", err)
 		models.SendErrorResponse(resp, http.StatusInternalServerError, "Error: Internal Server Error. Try later")
 		// http.Error(resp, "Failed to insert post", http.StatusInternalServerError)
-		return
-	}
-
-	var postID int
-	err = db.QueryRow("SELECT id FROM posts WHERE username = ? ORDER BY created_at DESC LIMIT 1", username).Scan(&postID)
-	if err == sql.ErrNoRows {
-		config.Logger.Println("No posts found for the user.")
-		// will never occur since we aready add the post above lol
-		models.SendErrorResponse(resp, http.StatusNotFound, "No posts found for the user")
-		return
-	} else if err != nil {
-		config.Logger.Println("Error retrieving last post ID:", err)
-		models.SendErrorResponse(resp, http.StatusInternalServerError, "Error: Internal Server Error. Try later")
-		// models.SendErrorResponse(resp, http.StatusInternalServerError, "Error retrieving user data")
 		return
 	}
 
@@ -90,7 +80,7 @@ func AddPost(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 		Title:      title,
 		Content:    postContent,
 		Categories: strings.Join(request.Categories, " "),
-		CreatedAt:  time.Now().Format("2006-01-02 15:04:05"),
+		CreatedAt:  utils.TimeAgo(time.Now()),
 		Likes:      0,
 		Dislikes:   0,
 	}

@@ -17,7 +17,7 @@ var (
 func RateLimitMiddleware(next http.HandlerFunc, limit int, window time.Duration) http.HandlerFunc {
 	go func() {
 		for {
-			time.Sleep(window) // reset the counts periodically
+			time.Sleep(window)
 			mu.Lock()
 			requestCounts = make(map[string]int)
 			mu.Unlock()
@@ -25,7 +25,7 @@ func RateLimitMiddleware(next http.HandlerFunc, limit int, window time.Duration)
 	}()
 
 	return func(w http.ResponseWriter, r *http.Request) {
-		ip, _, _ := net.SplitHostPort(r.RemoteAddr) // ip adress of logger
+		ip, _, _ := net.SplitHostPort(r.RemoteAddr) 
 
 		mu.Lock()
 		requestCounts[ip]++

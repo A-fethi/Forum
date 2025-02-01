@@ -1,6 +1,4 @@
-import { openAuthModal } from "./auth.js";
 import { showNotification } from "./components/notifications.js";
-import { Home } from "./Home.js";
 import { createPostElement } from "./posts.js";
 
 export let post = {};
@@ -45,7 +43,7 @@ export function checkPost() {
                 console.log("Sending post data:", data);
 
                 try {
-                    const resp = await fetch('/api/posts/', {
+                    const resp = await fetch('/api/posts/add', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -67,7 +65,6 @@ export function checkPost() {
                         const responseData = await resp.json();
                         console.error('Failed to create post:', resp.statusText);
                         showNotification(responseData.message, "error");
-                        // openAuthModal();
                     }
                 } catch (error) {
                     console.error("Error occurred while creating post:", error);

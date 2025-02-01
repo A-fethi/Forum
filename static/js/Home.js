@@ -28,7 +28,6 @@ export const Home = async () => {
 
         if (!resp.ok) {
             console.error("Failed to fetch posts, response not ok.");
-            // postsElement.textContent = "No Posts Found";
             showNotification("No posts found", "error");
             return;
         }
@@ -38,7 +37,6 @@ export const Home = async () => {
 
         if (!posts || posts.length === 0) {
             console.warn("No posts available.");
-            // postsElement.textContent = "No Posts Available";
             showNotification("No posts found", "error");
             return;
         }

@@ -15,7 +15,10 @@ import (
 const bcryptCost = 12
 
 func Register(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
-	var potentialUser models.UserCredentials
+	var (
+		potentialUser models.UserCredentials
+		userID        int
+	)
 
 	err := json.NewDecoder(req.Body).Decode(&potentialUser)
 	if err != nil {
@@ -50,19 +53,13 @@ func Register(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 		return
 	}
 
-	result, err := db.Exec(`
+	err = db.QueryRow(`
 		INSERT INTO users (username, email, password) 
-		VALUES (?, ?, ?)`,
-		potentialUser.Username, potentialUser.Email, hashedPassword)
+		VALUES (?, ?, ?)
+		RETURNING id`,
+		potentialUser.Username, potentialUser.Email, hashedPassword).Scan(&userID)
 	if err != nil {
 		config.Logger.Println("Register: Error inserting user into DB:", err)
-		models.SendErrorResponse(resp, http.StatusInternalServerError, "Error: Internal Server Error")
-		return
-	}
-
-	userID, err := result.LastInsertId()
-	if err != nil {
-		config.Logger.Println("Register: Error retrieving last inserted ID:", err)
 		models.SendErrorResponse(resp, http.StatusInternalServerError, "Error: Internal Server Error")
 		return
 	}
@@ -85,14 +82,5 @@ func Register(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	config.Logger.Println("Register: Successful registration for user:", potentialUser.Username, "User ID:", userID)
 
 	resp.WriteHeader(http.StatusCreated)
-	// json.NewEncoder(resp).Encode(struct {
-	// 	Message string `json:"message"`
-	// }{
-	// 	Message: "Registration Succes, logged In Automatically",
-	// })
-	// config.Templates.Exec(resp, "home.html", config.Login{
-	// 	IsAuthenticated: true,
-	// 	Username:        potentialUser.Username,
-	// })
 
 }

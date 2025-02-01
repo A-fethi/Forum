@@ -12,7 +12,7 @@ export function SessionCheck() {
         } else {
             return true;
         }
-    }, 60 * 60 * 1000); // Check every 5 minutes
+    }, 60 * 60 * 1000);
 }
 
 async function CheckAuth(url, options = {}) {

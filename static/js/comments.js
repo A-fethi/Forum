@@ -28,11 +28,8 @@ function createCommentMarkup(comment) {
     dislikesCount.textContent = `${comment.Dislikes || 0} Dislikes`;
     dislikesCount.id = `dislikes-commentcount-${comment.ID}`;
 
-    // const likeButton = document.createElement('button');
-    // likeButton.classList.add('like-btn', 'comment');
     likesCount.dataset.commentId = comment.ID;
     likesCount.value = "like";
-    // likesCount.textContent = "Like";
     likesCount.addEventListener("click", (e) => {
         const now = Date.now();
         if (now - lastClickedTime >= THROTTLE_DELAY) {
@@ -41,11 +38,8 @@ function createCommentMarkup(comment) {
         }
     });
 
-    // const dislikeButton = document.createElement('button');
-    // dislikeButton.classList.add('dislike-btn', 'comment');
     dislikesCount.dataset.commentId = comment.ID;
     dislikesCount.value = "dislike";
-    // dislikesCount.textContent = "Dislike";
     dislikesCount.addEventListener("click", (e) => {
         const now = Date.now();
         if (now - lastClickedTime >= THROTTLE_DELAY) {
@@ -60,20 +54,10 @@ function createCommentMarkup(comment) {
     interactionsContainer.appendChild(dislikesCount)
     commentDiv.appendChild(commentText);
     commentDiv.appendChild(interactionsContainer)
-    // commentDiv.appendChild(likesCount);
-    // commentDiv.appendChild(dislikesCount);
-    // commentDiv.appendChild(likeButton);
-    // commentDiv.appendChild(dislikeButton);
 
     commentItem.appendChild(commentDiv);
     return commentItem;
 }
-
-
-
-// export async function addComment(e) {
-//     const btn = e.target
-// }
 
 export function CommentHandler(commentButton, commentTextArea, commentList, postId) {
     commentButton.addEventListener('click', (e) => {

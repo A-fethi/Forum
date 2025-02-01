@@ -6,19 +6,47 @@ import (
 )
 
 func TimeAgo(t time.Time) string {
-	diff := time.Since(t)
+	t = t.UTC()
+	now := time.Now().UTC()
+
+	diff := now.Sub(t)
+
 	switch {
 	case diff < time.Minute:
-		return fmt.Sprintf("%d seconds ago", int(diff.Seconds()))
+		return "just now"
 	case diff < time.Hour:
-		return fmt.Sprintf("%d minutes ago", int(diff.Minutes()))
+		minutes := int(diff.Minutes())
+		if minutes == 1 {
+			return "1 minute ago"
+		}
+		return fmt.Sprintf("%d minutes ago", minutes)
+	
 	case diff < 24*time.Hour:
-		return fmt.Sprintf("%d hours ago", int(diff.Hours()))
+		hours := int(diff.Hours())
+		if hours == 1 {
+			return "1 hour ago"
+		}
+		return fmt.Sprintf("%d hours ago", hours)
+	
 	case diff < 30*24*time.Hour:
-		return fmt.Sprintf("%d days ago", int(diff.Hours()/24))
+		days := int(diff.Hours()) / 24
+		if days == 1 {
+			return "1 day ago"
+		}
+		return fmt.Sprintf("%d days ago", days)
+	
 	case diff < 12*30*24*time.Hour:
-		return fmt.Sprintf("%d months ago", int(diff.Hours()/24/30))
+		months := int(diff.Hours()) / (24 * 30)
+		if months == 1 {
+			return "1 month ago"
+		}
+		return fmt.Sprintf("%d months ago", months)
+	
 	default:
-		return fmt.Sprintf("%d years ago", int(diff.Hours()/24/365))
+		years := int(diff.Hours()) / (24 * 365)
+		if years == 1 {
+			return "1 year ago"
+		}
+		return fmt.Sprintf("%d years ago", years)
 	}
 }

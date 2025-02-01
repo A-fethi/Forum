@@ -8,7 +8,9 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"time"
 
+	"forum/app/api/auth"
 	"forum/app/api/comments"
 	"forum/app/config"
 	"forum/app/models"
@@ -44,13 +46,22 @@ func GetPosts(resp http.ResponseWriter, req *http.Request, db *sql.DB) []byte {
 		config.Logger.Printf("Fetching posts by categories: %v for page %d", categories, page)
 		err = fetchPostsByCategories(categories, &posts, page, db)
 	} else if strings.Contains(req.URL.Path, "created") {
+		if !auth.SessionCheck(resp, req, db) {
+			models.SendErrorResponse(resp, http.StatusUnauthorized, "Access Unauthorized")
+			return []byte("")
+		}
 		token, _ := utils.GetSessionToken(req)
 		_, userName, _ := utils.GetUsernameByToken(token, db)
 		err = fetchUserCreatedPosts(&posts, userName, db)
 	} else if strings.Contains(req.URL.Path, "liked") {
+		if !auth.SessionCheck(resp, req, db) {
+			models.SendErrorResponse(resp, http.StatusUnauthorized, "Access Unauthorized")
+			return []byte("null")
+		}
 		token, _ := utils.GetSessionToken(req)
-		_, userName, _ := utils.GetUsernameByToken(token, db)
-		err = fetchUserLikedPosts(&posts, userName, db)
+		userID, _, _ := utils.GetUsernameByToken(token, db)
+		fmt.Println("BIG XXXXX")
+		err = fetchUserLikedPosts(&posts, userID, db)
 	} else if req.URL.Path == "/api/posts" || strings.HasPrefix(req.URL.Path, "/api/posts/") {
 		config.Logger.Printf("Fetching posts for page %d", page)
 		err = fetchAllPosts(&posts, page, db)
@@ -149,12 +160,13 @@ func rowsProcess(rows *sql.Rows, posts *[]models.Post, db *sql.DB) error {
 		var post models.Post
 
 		config.Logger.Printf("Scanning row for post...")
-
-		if err := rows.Scan(&post.Username, &post.ID, &post.Title, &post.Content, &post.Categories, &post.CreatedAt, &post.Likes, &post.Dislikes); err != nil {
+		var creationTime time.Time
+		if err := rows.Scan(&post.Username, &post.ID, &post.Title, &post.Content, &post.Categories, &creationTime, &post.Likes, &post.Dislikes); err != nil {
 			log.Printf("Error scanning post: %v", err)
 			return fmt.Errorf("error scanning post: %v", err)
 		}
-
+		post.CreatedAt = utils.TimeAgo(creationTime)
+		config.Logger.Println("SSSSS: ", creationTime, post.CreatedAt)
 		config.Logger.Printf("Successfully scanned post with ID: %d", post.ID)
 
 		var err error

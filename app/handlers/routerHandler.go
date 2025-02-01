@@ -12,37 +12,47 @@ import (
 )
 
 func Router(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
-
 	path := strings.Split(req.URL.Path[5:], "/")
-	switch path[0] {
+	if len(path) == 0 || path[0] == "" {
+		models.SendErrorResponse(resp, http.StatusNotFound, "Page Not Found")
+		return
+	}
+
+	switch strings.ToLower(path[0]) {
 	case "auth":
 		auth.Authentication(resp, req, db)
-	case "posts":
-		if req.Method == http.MethodGet {
-			data := posts.GetPosts(resp, req, db)
-			if len(data) == 0 {
-				resp.Header().Set("Content-Type", "application/json")
-				resp.Write([]byte("[]"))
-			} else {
-				resp.Header().Set("Content-Type", "application/json")
-				resp.Write(data)
-			}
+		return
 
-		} else if req.Method == http.MethodPost {
+	case "posts":
+		if req.Method == http.MethodPost && len(path) > 1 && path[1] == "add" {
 			posts.AddPost(resp, req, db)
-		} else {
-			models.SendErrorResponse(resp, http.StatusMethodNotAllowed, "Error: Method not allowed")
 			return
 		}
+		if req.Method == http.MethodGet {
+			data := posts.GetPosts(resp, req, db)
+			resp.Header().Set("Content-Type", "application/json")
+			if len(data) == 0 {
+				resp.Write([]byte("[]"))
+			} else {
+				resp.Write(data)
+			}
+			return
+		}
+		models.SendErrorResponse(resp, http.StatusMethodNotAllowed, "Error: Method not allowed")
+		return
+
 	case "comments":
 		if req.Method == http.MethodPost {
 			comments.AddComment(resp, req, db)
-		} else {
-			models.SendErrorResponse(resp, http.StatusMethodNotAllowed, "Error: Method not allowed")
 			return
 		}
+		models.SendErrorResponse(resp, http.StatusMethodNotAllowed, "Error: Method not allowed")
+		return
+
 	case "reactions":
 		reactions.AddReaction(resp, req, db)
+		return
+
 	default:
 		models.SendErrorResponse(resp, http.StatusNotFound, "Page Not Found")
 		return

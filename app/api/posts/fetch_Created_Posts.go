@@ -30,7 +30,7 @@ func fetchUserCreatedPosts(posts *[]models.Post, username string, db *sql.DB) er
 	return nil
 }
 
-func fetchUserLikedPosts(posts *[]models.Post, username string, db *sql.DB) error {
+func fetchUserLikedPosts(posts *[]models.Post, userID int, db *sql.DB) error {
 	query := `
 		SELECT posts.username, 
     		posts.id AS post_id, 
@@ -42,20 +42,22 @@ func fetchUserLikedPosts(posts *[]models.Post, username string, db *sql.DB) erro
     		posts.dislikes
 		FROM posts
 		JOIN user_interactions ON posts.id = user_interactions.item_id
-		WHERE posts.username = ? AND user_interactions.item_type = "post" AND user_interactions.action = "like"
+		WHERE user_interactions.user_id = ? 
+  		AND user_interactions.item_type = "post" 
+  		AND user_interactions.action = "like"
 		ORDER BY posts.created_at DESC
 	`
-	config.Logger.Printf("Fetching posts liked by user '%s'. Executing query: %s", username, query)
-	rows, err := db.Query(query, username)
+	config.Logger.Printf("Fetching posts liked by user '%v'. Executing query: %s", userID, query)
+	rows, err := db.Query(query, userID)
 	if err != nil {
-		return fmt.Errorf("error querying posts liked by user '%s': %v", username, err)
+		return fmt.Errorf("error querying posts liked by user '%v': %v", userID, err)
 	}
 	defer rows.Close()
 
 	if err := rowsProcess(rows, posts, db); err != nil {
-		return fmt.Errorf("error processing rows for posts liked by user '%s': %v", username, err)
+		return fmt.Errorf("error processing rows for posts liked by user '%v': %v", userID, err)
 	}
 
-	config.Logger.Printf("Successfully fetched posts liked by user '%s'", username)
+	config.Logger.Printf("Successfully fetched posts liked by userID '%v'", userID)
 	return nil
 }

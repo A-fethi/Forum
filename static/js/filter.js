@@ -1,7 +1,5 @@
 import { createPostElement } from "./posts.js";
 
-let currentPage = 1
-
 export const filterCat = (page = 1) => {
     let selectedCategories = [];
     const categoryList = document.querySelector(".categories");
@@ -78,7 +76,7 @@ export const filterCat = (page = 1) => {
                 });
                 
                 if (loadMoreButton) {
-                    loadMoreButton.style.display = posts.length >= 10 ? 'block' : 'none';
+                    loadMoreButton.style.display = 'none';
                 }
             }
         } catch (error) {
@@ -110,7 +108,7 @@ export const filterCat = (page = 1) => {
                 });
                 
                 if (loadMoreButton) {
-                    loadMoreButton.style.display = posts.length >= 10 ? 'block' : 'none';
+                    loadMoreButton.style.display = 'none';
                 }
             }
         } catch (error) {

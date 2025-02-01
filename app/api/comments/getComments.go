@@ -5,35 +5,32 @@ import (
 	"forum/app/models"
 )
 
-// func GetComments(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
-
-// }
-
 func GetComments(postID int, db *sql.DB) ([]models.Comment, error) {
-	// Get post ID from URL
-	// postID := req.URL.Path[len("/api/comments/"):]
-	rows, err := db.Query("SELECT id, author, content, created_at, likes, dislikes FROM comments WHERE post_id = ? ORDER BY created_at DESC", postID)
+	stmt, err := db.Prepare("SELECT id, author, content, created_at, likes, dislikes FROM comments WHERE post_id = ? ORDER BY created_at DESC")
 	if err != nil {
+		return nil, err
+	}
+	defer stmt.Close()
 
+	rows, err := stmt.Query(postID)
+	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
 
-	var commentss []models.Comment
+	var commentsList []models.Comment
 	for rows.Next() {
-		var comments models.Comment
-		if err := rows.Scan(&comments.ID, &comments.Username, &comments.Content, &comments.CreatedAt, &comments.Likes, &comments.Dislikes); err != nil {
-
+		var comment models.Comment
+		if err := rows.Scan(&comment.ID, &comment.Username, &comment.Content, &comment.CreatedAt, &comment.Likes, &comment.Dislikes); err != nil {
 			return nil, err
 		}
-
-		commentss = append(commentss, comments)
+		commentsList = append(commentsList, comment)
 	}
-	if err := rows.Err(); err != nil {
 
+	if err := rows.Err(); err != nil {
 		return nil, err
 	}
 
-	// Prepare data for template
-	return commentss, nil
+	return commentsList, nil
 }
+

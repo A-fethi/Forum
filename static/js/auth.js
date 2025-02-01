@@ -1,4 +1,3 @@
-import { Session } from "./index.js";
 import { showNotification } from "./components/notifications.js";
 
 

@@ -1,4 +1,3 @@
-
 import { showNotification } from "./components/notifications.js";
 
 export function attachInteractionListeners() {
@@ -94,8 +93,6 @@ export async function handleInteraction(e, itemtype) {
         return
       }
      
-
-      // showNotification(`Successfully ${action}d`, "success");
     } else {
       console.error("Failed to update interaction. Status:", response.status);
       const err = await response.json();

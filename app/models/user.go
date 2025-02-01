@@ -2,10 +2,11 @@ package models
 
 import (
 	"database/sql"
-	"forum/app/config"
 	"net/http"
 	"regexp"
 	"unicode"
+
+	"forum/app/config"
 
 	"golang.org/x/crypto/bcrypt"
 )
@@ -17,27 +18,23 @@ type UserCredentials struct {
 }
 
 func VerifyPassword(hashedPassword, plainPassword string) bool {
-
 	err := bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(plainPassword))
-	if err != nil {
-
-		return false
-	}
-
-	return true
+	return err == nil
 }
 
-func ValidUserName(name string) bool {
+func ValidUserName(name string) (bool, string) {
 	if name == "" {
-		return false
+		return false, "username cannot be empty"
+	}
+	if len(name) > 36 {
+		return false, "username cannot be longer than 36 characters"
 	}
 	for _, char := range name {
-
 		if !(unicode.IsLetter(char) || unicode.IsDigit(char)) {
-			return false
+			return false, "username contains invalid characters"
 		}
 	}
-	return true
+	return true, ""
 }
 
 func ValidEmail(email string) bool {
@@ -46,17 +43,14 @@ func ValidEmail(email string) bool {
 }
 
 func ValidatePassword(password string) bool {
-	if len(password) < 8 {
-		return false
-	}
-	return true
+	return len(password) >= 8
 }
 
 func (User *UserCredentials) ValidInfo(resp http.ResponseWriter, db *sql.DB) (bool, string, int) {
-
-	if !ValidUserName(User.Username) {
-		config.Logger.Println("Failed Register Attempt: Username contains invalid characters.")
-		return false, "username contains invalid characters", http.StatusBadRequest
+	valid, message := ValidUserName(User.Username)
+	if !valid {
+		config.Logger.Println("Failed Register Attempt:", message)
+		return false, message, http.StatusBadRequest
 	}
 
 	var username string

@@ -1,6 +1,3 @@
-
-
-
 export function showNotification(message, type = 'error') {
     const container = document.getElementById('notification-container');
     
@@ -17,5 +14,5 @@ export function showNotification(message, type = 'error') {
     setTimeout(() => {
         container.classList.remove('show');
         container.classList.add('hidden');
-    }, 5000);  // hide in 5 sec
+    }, 5000);
 }

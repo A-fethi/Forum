@@ -49,15 +49,11 @@ html {
 .container {
   display: grid;
   grid-template-columns: 0.2fr 1fr;
-  /* Adjust sidebar widths */
   gap: 24px;
   padding: 24px;
-  /* max-width: 1400px; */
   margin-top: 80px;
-  /* Adjust margin to avoid header overlap */
 }
 
-/* Search Bar */
 
 /* Left Sidebar */
 .left-sidebar {
@@ -196,9 +192,6 @@ html {
 .post-categories span {
   display: inline-block;
   padding: 6px 12px;
-  /* background: #eef2ff; */
-  /* color: #4f46e5; */
-  /* border: 1px solid #4f46e5; */
   border-radius: 6px;
   font-size: 13px;
   font-weight: 500;
@@ -335,36 +328,6 @@ html {
   font-size: 18px;
 }
 
-/* .like-button,
-.dislike-button {
-  display: flex;
-  align-items: center;
-}
-
-.like-button i {
-  color: #28a745;
-}
-
-.dislike-button i {
-  color: #dc3545;
-}
-
-.like-button:hover i,
-.dislike-button:hover i {
-  transform: scale(1.1);
-}
-
-.like-count,
-.dislike-count {
-  font-size: 14px;
-  margin-left: 5px;
-}
-
-.like-button:focus,
-.dislike-button:focus {
-  outline: none;
-} */
-
 /* Toggle Comments Button */
 .toggle-comments {
   padding: 10px 15px;
@@ -382,42 +345,6 @@ html {
 .toggle-comments span {
   font-weight: bold;
 }
-
-/* Comment item (the individual comment wrapper) */
-/* .comment-item {
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fff;
-  margin-bottom: 15px;
-}
-
-.comment-item p {
-  margin: 0;
-  font-size: 14px;
-  color: #333;
-}
-
-.comment-item strong {
-  font-weight: bold;
-  color: #007bff;
-}
-
-.comment-item .comment-footer {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #555;
-}
-
-.comment-item .comment-footer button {
-  color: #007bff;
-  font-size: 14px;
-}
-
-.comment-item .comment-footer i {
-  font-size: 16px;
-} */
-
 
 /* Right Sidebar */
 .right-sidebar {
@@ -469,10 +396,6 @@ html {
   color: #2563eb;
 }
 
-
-
-/* ... (previous CSS remains the same until post-interactions) ... */
-
 .post-interactions {
   display: flex;
   gap: 16px;
@@ -481,99 +404,10 @@ html {
   border-top: 1px solid #e5e7eb;
 }
 
-/* 
-.header {
-  background: #2563eb;
-  padding: 16px 24px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.header-content {
-  max-width: 1600px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-
-.header-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: white;
-  font-size: 24px;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-.header-search {
-  flex: 1;
-  max-width: 600px;
-  position: relative;
-}
-
-.header-search input {
-  width: 100%;
-  padding: 12px 44px 12px 16px;
-  border: none;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 15px;
-  transition: all 0.2s ease;
-}
-
-.header-search input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.header-search input:focus {
-  outline: none;
-  background: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
-}
-
-.header-search i {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.header-nav {
-  display: flex;
-  gap: 24px;
-  margin-left: auto;
-}
-
-.header-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 15px;
-  padding: 8px 16px;
-  border-radius: 6px;
-  transition: background-color 0.2s ease;
-}
-
-.header-nav a:hover {
-  background: rgba(255, 255, 255, 0.1);
-} */
-
 .comment-button:hover {
   background: #1d4ed8;
 }
 
-/* Add Post Form Styling */
-/* Form Container */
-/* Add Post Form Container */
-/* Overall form styling */
 .add-post {
   background-color: #ffffff;
   border: 1px solid #dfe1e5;
@@ -754,6 +588,10 @@ a:hover {
     justify-content: space-around;
   }
 
+  .header-container {
+    gap: 60px;
+  }
+
   .header-logo {
     font-size: 18px;
   }
@@ -763,5 +601,13 @@ a:hover {
     font-weight: 500;
     font-size: 13px;
     padding: 3px 5px;
+  }
+
+  .notification-container {
+    right: 10px;
+  }
+
+  .auth-modal {
+    width: 70%;
   }
 }
