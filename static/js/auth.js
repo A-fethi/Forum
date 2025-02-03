@@ -78,6 +78,7 @@ export function createSignUpForm() {
     .addEventListener("click", (e) => {
       e.preventDefault();
       showLoginForm();
+      
     });
 
   auth();

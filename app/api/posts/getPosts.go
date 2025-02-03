@@ -17,82 +17,122 @@ import (
 	"forum/app/utils"
 )
 
-func GetPosts(resp http.ResponseWriter, req *http.Request, db *sql.DB) []byte {
+func GetPosts(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	var posts []models.Post
 	var categories []string
 	var err error
-	pageStr := ""
-	config.Logger.Printf("Request URL Path: %s", req.URL.Path)
-	pathParts := strings.Split(req.URL.Path, "/")
-	if len(pathParts) >= 4 {
-		pageStr = pathParts[3]
-		config.Logger.Printf("Requested Page: %s", pageStr)
-	}
+
+	// pageStr := ""
+	// pathParts := strings.Split(req.URL.Path, "/")
+	// if len(pathParts) >= 4 {
+	// 	pageStr = pathParts[3]
+	// }
+	// fmt.Println("FFFFFFFFFFFFF", pathParts)
+	//
+
+	// if pageStr != "" {
+	// 	if p, err := strconv.Atoi(pageStr); err == nil && p > 0 {
+	// 		page = p
+	// 	}
+	// }
 	page := 1
+	switch {
+	case strings.HasPrefix(req.URL.Path, "/api/posts/categories="):
+		pathParts := strings.Split(req.URL.Path, "/")
+		catPart := strings.Split(pathParts[3], "categories=")
+		if len(pathParts) == 5 {
+			if p, err := strconv.Atoi(pathParts[4]); err == nil && p > 0 {
+				page = p
+			} else {
+				models.SendErrorResponse(resp, http.StatusNotFound, "Page Not Found")
+				return
+			}
 
-	if pageStr != "" {
-		if p, err := strconv.Atoi(pageStr); err == nil && p > 0 {
-			page = p
+		} else {
+			models.SendErrorResponse(resp, http.StatusNotFound, "Page Not Found")
+			return
 		}
-	}
+		if len(catPart) == 2 {
+			categories = strings.Split(catPart[1], "&")
+			config.Logger.Printf("Categories found in URL: %v", categories)
+		}
+		if len(categories) > 0 {
+			config.Logger.Printf("Fetching posts by categories: %v for page %d", categories, page)
+			err = fetchPostsByCategories(categories, &posts, page, db)
+		} else {
+			models.SendErrorResponse(resp, http.StatusBadRequest, "Invalid categories parameter")
+			return
+		}
 
-	if strings.Contains(req.URL.Path, "categories") {
-		cat := strings.Split(req.URL.Path, "/categories=")[1]
-		categories = strings.Split(cat, "&")
-		config.Logger.Printf("Categories found in URL: %v", categories)
-	}
-
-	if len(categories) > 0 {
-		config.Logger.Printf("Fetching posts by categories: %v for page %d", categories, page)
-		err = fetchPostsByCategories(categories, &posts, page, db)
-	} else if strings.Contains(req.URL.Path, "created") {
+	case req.URL.Path == "/api/posts/created":
 		if !auth.SessionCheck(resp, req, db) {
 			models.SendErrorResponse(resp, http.StatusUnauthorized, "Access Unauthorized")
-			return []byte("")
+			return
 		}
 		token, _ := utils.GetSessionToken(req)
 		_, userName, _ := utils.GetUsernameByToken(token, db)
 		err = fetchUserCreatedPosts(&posts, userName, db)
-	} else if strings.Contains(req.URL.Path, "liked") {
+
+	case req.URL.Path == "/api/posts/liked":
 		if !auth.SessionCheck(resp, req, db) {
 			models.SendErrorResponse(resp, http.StatusUnauthorized, "Access Unauthorized")
-			return []byte("null")
+			return
 		}
 		token, _ := utils.GetSessionToken(req)
 		userID, _, _ := utils.GetUsernameByToken(token, db)
-		fmt.Println("BIG XXXXX")
 		err = fetchUserLikedPosts(&posts, userID, db)
-	} else if req.URL.Path == "/api/posts" || strings.HasPrefix(req.URL.Path, "/api/posts/") {
+
+	case req.URL.Path == "/api/posts" || strings.HasPrefix(req.URL.Path, "/api/posts/"):
+		pathParts := strings.Split(req.URL.Path, "/")
+		fmt.Println()
+		fmt.Println()
+		fmt.Println("TTTTTTTTTTTTTTTTTTTT:", pathParts, len(pathParts))
+		if len(pathParts) == 4 {
+			if p, err := strconv.Atoi(pathParts[3]); err == nil && p > 0 {
+				page = p
+			} else {
+				models.SendErrorResponse(resp, http.StatusNotFound, "Page Not Found")
+				return
+			}
+
+		} else if len(pathParts) > 4 {
+			models.SendErrorResponse(resp, http.StatusNotFound, "Page Not Found")
+			return
+		}
 		config.Logger.Printf("Fetching posts for page %d", page)
 		err = fetchAllPosts(&posts, page, db)
-	} else {
-		return []byte("null")
+
+	default:
+		models.SendErrorResponse(resp, http.StatusNotFound, "Endpoint not found")
+		return
 	}
 
 	if err != nil {
 		models.SendErrorResponse(resp, http.StatusInternalServerError, "Error: Internal Server Error")
-		return nil
+		config.Logger.Printf("Error fetching posts: %v", err)
+		return
 	}
-	var postJSON []byte
+
 	if len(posts) == 0 {
-		return []byte{}
-	} else {
-		postJSON, err = json.Marshal(posts)
-		if err != nil {
-			models.SendErrorResponse(resp, 500, "Error: Internal Server Error")
-			config.Logger.Printf("Error marshaling posts: %v", err)
-			return nil
-		}
-
+		resp.Header().Set("Content-Type", "application/json")
+		resp.Write([]byte("[]"))
+		return
 	}
-	config.Logger.Printf("Number of posts returned: %d", len(posts))
 
-	return postJSON
+	postJSON, err := json.Marshal(posts)
+	if err != nil {
+		models.SendErrorResponse(resp, http.StatusInternalServerError, "Error: Internal Server Error")
+		config.Logger.Printf("Error marshaling posts: %v", err)
+		return
+	}
+
+	config.Logger.Printf("Number of posts returned: %d", len(posts))
+	resp.Header().Set("Content-Type", "application/json")
+	resp.Write(postJSON)
 }
 
 func fetchPostsByCategories(categories []string, posts *[]models.Post, page int, db *sql.DB) error {
-	const limit = 10
-	offset := (page - 1) * limit
+	var limit = 10 * page
 
 	// Prepare the LIKE conditions for each category
 	var likeConditions []string
@@ -108,7 +148,7 @@ func fetchPostsByCategories(categories []string, posts *[]models.Post, page int,
 		FROM posts 
 		WHERE %s
 		ORDER BY created_at DESC 
-		LIMIT ? OFFSET ?`, condition)
+		LIMIT ?`, condition)
 
 	params := make([]any, len(categories)+2)
 	for i, category := range categories {
@@ -116,11 +156,10 @@ func fetchPostsByCategories(categories []string, posts *[]models.Post, page int,
 	}
 	// add limit and offset still have to see ila ghytzado ola la, pagination o dakchi
 	params[len(categories)] = limit
-	params[len(categories)+1] = offset
 
 	config.Logger.Println("Params: ", params)
 
-	config.Logger.Printf("Executing query: %s with categories: %v, limit: %d, offset: %d", query, categories, limit, offset)
+	config.Logger.Printf("Executing query: %s with categories: %v, limit: %d", query, categories, limit)
 
 	rows, err := db.Query(query, params...)
 	if err != nil {
@@ -133,17 +172,17 @@ func fetchPostsByCategories(categories []string, posts *[]models.Post, page int,
 }
 
 func fetchAllPosts(posts *[]models.Post, page int, db *sql.DB) error {
-	const limit = 10
-	offset := (page - 1) * limit
+	var limit = 10 * page
+	// offset := (page - 1) * limit
 
 	query := `SELECT username, id, title, content, Categories, created_at, likes, dislikes 
               FROM posts 
               ORDER BY created_at DESC 
-              LIMIT ? OFFSET ?`
+              LIMIT ?`
 
-	config.Logger.Printf("Executing query: %s with limit %d and offset %d", query, limit, offset)
+	config.Logger.Printf("Executing query: %s with limit %d", query, limit)
 
-	rows, err := db.Query(query, limit, offset)
+	rows, err := db.Query(query, limit)
 	if err != nil {
 		config.Logger.Printf("Error querying all posts: %v", err)
 		return fmt.Errorf("error querying all posts: %v", err)

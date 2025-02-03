@@ -4,13 +4,12 @@ import { createPostElement } from "./posts.js";
 import { createCommentElement } from "./comments.js";
 import { logout } from "./auth.js";
 import { checkPost } from "./addposts.js";
-
 export const Home = async () => {
     console.log("Initializing Home function...");
     const loadMoreButton = document.getElementById('load-more');
     console.log(loadMoreButton)
     if (loadMoreButton) {
-        loadMoreButton.style.display = 'block';
+        loadMoreButton.style.display = 'none';
     }
 
 
@@ -18,7 +17,6 @@ export const Home = async () => {
 
     checkPost();
     console.log("Checked post creation functionality.");
-
     const postsElement = document.getElementById("posts-container");
     console.log("Posts container element:", postsElement);
 
@@ -27,8 +25,10 @@ export const Home = async () => {
         const resp = await fetch("/api/posts");
 
         if (!resp.ok) {
+            const res = await resp.json()
             console.error("Failed to fetch posts, response not ok.");
-            showNotification("No posts found", "error");
+            // postsElement.textContent = "No Posts Found";
+            showNotification(res.message, "error");
             return;
         }
 
@@ -36,6 +36,7 @@ export const Home = async () => {
         console.log("Fetched posts:", posts);
 
         if (!posts || posts.length === 0) {
+            loadMoreButton.style.display = 'none';
             console.warn("No posts available.");
             showNotification("No posts found", "error");
             return;
@@ -52,14 +53,6 @@ export const Home = async () => {
             console.log("Processing post:", post);
             const postElement = createPostElement(post);
             postsElement.appendChild(postElement);
-            const commentsList = postElement.querySelector('.comment-list');
-            commentsList.replaceChildren();
-
-            post.Comments?.forEach(comment => {
-                console.log("Adding comment:", comment);
-                const commentElement = createCommentElement(comment);
-                commentsList.appendChild(commentElement);
-            });
         });
         
         console.log("Comment functionality initialized.");
@@ -70,8 +63,8 @@ export const Home = async () => {
         console.log("Interaction listeners attached.");
 
     } catch (error) {
-        console.error("Error fetching posts:", error);
-        postsElement.textContent = "No Posts Available";
-        showNotification("Error Fetching Posts", "error");
+        console.error("Error: ", error);
+        // // postsElement.textContent = "No Posts Available";
+        // showNotification("an Error Occured, Try Again", "error");
     }
 };

@@ -15,12 +15,10 @@ func Logout(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 		if err == http.ErrNoCookie {
 			config.Logger.Println("Logout failed: No session token found. User not logged in.")
 			models.SendErrorResponse(resp, http.StatusUnauthorized, "Access: Unauthorized")
-			// http.Error(resp, "Unauthorized action!", http.StatusUnauthorized)
 			return
 		}
 		config.Logger.Println("Logout failed: Error retrieving session token:", err)
 		models.SendErrorResponse(resp, http.StatusInternalServerError, "Error: Internal Server Error, Try Later.")
-		// http.Error(resp, "Internal server error", http.StatusInternalServerError)
 		return
 	}
 
@@ -29,12 +27,10 @@ func Logout(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 		if err == sql.ErrNoRows {
 			config.Logger.Println("Logout failed: No matching user found for the session token.")
 			models.SendErrorResponse(resp, http.StatusUnauthorized, "Access: Unauthorized")
-			// http.Error(resp, "Unauthorized action!", http.StatusUnauthorized)
 			return
 		}
 		config.Logger.Println("Logout failed: Error retrieving username by token:", err)
 		models.SendErrorResponse(resp, http.StatusInternalServerError, "Error: Internal Server Error, Try Later.")
-		// http.Error(resp, "Internal server error", http.StatusInternalServerError)
 		return
 	}
 
@@ -42,7 +38,6 @@ func Logout(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	if err != nil {
 		config.Logger.Println("Logout failed: Error deleting session from database:", err)
 		models.SendErrorResponse(resp, http.StatusInternalServerError, "Error: Internal Server Error, Try Later.")
-		// http.Error(resp, "Internal server error", http.StatusInternalServerError)
 		return
 	}
 
@@ -50,7 +45,6 @@ func Logout(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	if rowsAffected == 0 {
 		config.Logger.Println("Logout failed: No active session found to delete.")
 		models.SendErrorResponse(resp, http.StatusUnauthorized, "Access: Unauthorized")
-		// http.Error(resp, "Unauthorized action!", http.StatusUnauthorized)
 		return
 	}
 
@@ -63,7 +57,5 @@ func Logout(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	})
 
 	config.Logger.Println("Logout successful: User", username, "logged out, session removed.")
-	// config.Templates.Exec(resp, "home.html", nil)
 	resp.WriteHeader(http.StatusOK)
-	// config.Templates.Exec(resp, "home.html", nil)
 }

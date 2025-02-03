@@ -564,6 +564,21 @@ a:hover {
   cursor: pointer;
 }
 
+noscript h1 {
+  color: red;
+  font-weight: 500;
+  font-size: 95px;
+  background-color: black;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+  position: absolute;
+  top: 0;
+  height: 200%;
+  width: 100%;
+  z-index: 100000;
+}
+
 /* Form Adjustments for Smaller Screens */
 @media (max-width: 1023px) {
   .container {
@@ -609,5 +624,9 @@ a:hover {
 
   .auth-modal {
     width: 70%;
+  }
+
+  noscript h1 {
+    font-size: 38px;
   }
 }

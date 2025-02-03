@@ -75,9 +75,4 @@ func Login(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	resp.WriteHeader(http.StatusOK)
 	_ = json.NewEncoder(resp).Encode(map[string]string{"message": "Login successful"})
 
-	// config.Templates.Exec(resp, "home.html", config.Login{
-	// 	IsAuthenticated: true,
-	// 	Username:        username,
-	// })
-
 }

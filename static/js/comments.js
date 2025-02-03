@@ -89,7 +89,7 @@ export async function AddComment(commentTextArea, commentList, postId) {
             showNotification('Comment added successfully', 'success');
         } else {
             const errorMsg = await response.json();
-            showNotification("Invalid Content", 'error');
+            showNotification(errorMsg.message, 'error');
         }
     } catch (error) {
         showNotification('Error submitting comment', 'error');

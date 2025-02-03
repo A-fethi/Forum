@@ -29,13 +29,7 @@ func Router(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 			return
 		}
 		if req.Method == http.MethodGet {
-			data := posts.GetPosts(resp, req, db)
-			resp.Header().Set("Content-Type", "application/json")
-			if len(data) == 0 {
-				resp.Write([]byte("[]"))
-			} else {
-				resp.Write(data)
-			}
+			posts.GetPosts(resp, req, db)
 			return
 		}
 		models.SendErrorResponse(resp, http.StatusMethodNotAllowed, "Error: Method not allowed")
