@@ -1,4 +1,4 @@
-
+import { showNotification } from "./components/notifications.js";
 import { createPostElement } from "./posts.js";
 
 export const filterCat = (page = 1) => {
@@ -25,10 +25,10 @@ export const filterCat = (page = 1) => {
         }
         return;
       }
-      postsContainer.innerHTML = ""
+      postsContainer.innerHTML = "";
       posts.forEach((post) => {
-          const postElement = createPostElement(post);
-          postsContainer.appendChild(postElement);
+        const postElement = createPostElement(post);
+        postsContainer.appendChild(postElement);
       });
 
       if (loadMoreButton) {
@@ -131,8 +131,6 @@ export const filterCat = (page = 1) => {
         event.target.classList.add("Selected", "active");
       }
 
-      console.log("Selected categories:", selectedCategories);
-
       let url =
         selectedCategories.length > 0
           ? `/api/posts/categories=${selectedCategories.join("&")}/${page}`
@@ -142,13 +140,14 @@ export const filterCat = (page = 1) => {
         const resp = await fetch(url);
 
         if (!resp.ok) {
+          const response = await resp.json();
           console.log("Didn't get posts from API");
+          showNotification(response.message, "error");
           return;
         }
 
         const posts = await resp.json();
         postsContainer.replaceChildren();
-        console.log("Posts:", posts);
 
         if (posts.length === 0) {
           postsContainer.textContent = "No Posts Available";

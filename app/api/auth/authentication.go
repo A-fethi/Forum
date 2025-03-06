@@ -13,6 +13,8 @@ func Authentication(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	action := strings.TrimPrefix(req.URL.Path, "/api/auth/")
 
 	switch action {
+	case "google-login":
+		handleAuthAction(resp, req, db, http.MethodPost, "google", GoogleLogin)
 	case "register":
 		handleAuthAction(resp, req, db, http.MethodPost, "register", Register)
 

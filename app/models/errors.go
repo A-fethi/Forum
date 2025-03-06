@@ -27,7 +27,6 @@ func SendErrorResponse(resp http.ResponseWriter, statusCode int, message string)
 		return
 	} else {
 		resp.Header().Set("Content-Type", "application/json")
-
 		jsonResponse := ErrorResponse{
 			StatusCode: statusCode,
 			Message:    message}

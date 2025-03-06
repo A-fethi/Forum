@@ -40,6 +40,7 @@ func Home(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 		config.Templates.ExecuteTemplate(resp, "home.html", nil)
 		return
 	}
+	
 	User := config.TemplateData{
 		IsAuthenticated: true,
 		Username:        username,

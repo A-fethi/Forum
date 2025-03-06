@@ -11,7 +11,6 @@ func Static(resp http.ResponseWriter, req *http.Request) {
 	if req.Method != http.MethodGet {
 		config.Logger.Println("Attempt to access static files with method: ", req.Method, " Rejected.")
 		models.SendErrorResponse(resp, http.StatusMethodNotAllowed, "405 - Method Not Allowed.")
-		// http.Error(resp, "405 - method not allowed", 405)
 		return
 	}
 
@@ -29,7 +28,6 @@ func Static(resp http.ResponseWriter, req *http.Request) {
 	if fileInfo.IsDir() {
 		config.Logger.Println("Attempt to access Forbidden Folder: ", fileInfo)
 		models.SendErrorResponse(resp, http.StatusForbidden, "Access Forbidden")
-		// http.Error(resp, "403 - access forbidden", 403)
 		return
 	}
 	http.ServeFile(resp, req, req.URL.Path[1:])

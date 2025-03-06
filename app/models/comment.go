@@ -6,7 +6,6 @@ type Comment struct {
 	Username  string
 	PostID    int
 	CreatedAt string
-	Likes     int // Number of likes for this comment
-	Dislikes  int // Number of dislikes for this comment
-
+	Likes     int 
+	Dislikes  int 
 }

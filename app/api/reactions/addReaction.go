@@ -17,14 +17,12 @@ func AddReaction(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	if req.Method != http.MethodPost {
 		config.Logger.Println("Invalid HTTP method:", req.Method)
 		models.SendErrorResponse(resp, http.StatusMethodNotAllowed, "Method Not Alowed")
-		// http.Error(resp, "Method Not Allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
 	if !auth.SessionCheck(resp, req, db) {
 		config.Logger.Println("Unauthorized access attempt")
 		models.SendErrorResponse(resp, http.StatusUnauthorized, "Access: User not authenticated, Login and try!!")
-		// http.Error(resp, "User not authenticated", http.StatusUnauthorized)
 		return
 	}
 
@@ -35,7 +33,6 @@ func AddReaction(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	if err != nil {
 		config.Logger.Printf("Error getting username by token: %v", err)
 		models.SendErrorResponse(resp, 500, "Error: Internal Server Error, try again later!")
-		// http.Error(resp, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 	config.Logger.Println("Authenticated user ID:", userID)
@@ -49,7 +46,6 @@ func AddReaction(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	if err := json.NewDecoder(req.Body).Decode(&reactRequest); err != nil {
 		config.Logger.Printf("Error decoding request body: %v", err)
 		models.SendErrorResponse(resp, http.StatusBadRequest, "Error: Invalid Request Body")
-		// http.Error(resp, "400 - Invalid request body", http.StatusBadRequest)
 		return
 	}
 
@@ -59,7 +55,6 @@ func AddReaction(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	if err != nil || (reactRequest.Action != "like" && reactRequest.Action != "dislike") {
 		config.Logger.Println("Invalid item ID or action")
 		models.SendErrorResponse(resp, http.StatusBadRequest, "Error: Invalid reaction")
-		// http.Error(resp, "Bad Request", http.StatusBadRequest)
 		return
 	}
 
@@ -72,7 +67,6 @@ func AddReaction(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	default:
 		config.Logger.Println("Invalid item type:", reactRequest.ItemType)
 		models.SendErrorResponse(resp, http.StatusBadRequest, "Error: item Not a Post/Comment")
-		// http.Error(resp, "Invalid item type", http.StatusBadRequest)
 		return
 	}
 
@@ -93,7 +87,6 @@ func AddReaction(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 		if err != nil {
 			config.Logger.Printf("Error adding interaction: %v", err)
 			models.SendErrorResponse(resp, http.StatusInternalServerError, "Error: Internal Server Error.")
-			// http.Error(resp, "Internal Server Error", http.StatusInternalServerError)
 			return
 		}
 
@@ -132,7 +125,6 @@ func AddReaction(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	} else {
 		config.Logger.Printf("Error querying interactions: %v", err)
 		models.SendErrorResponse(resp, http.StatusInternalServerError, "Error: Internal Server Error.")
-		// http.Error(resp, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 
@@ -141,7 +133,6 @@ func AddReaction(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	if err != nil {
 		config.Logger.Printf("Error retrieving updated likes/dislikes: %v", err)
 		models.SendErrorResponse(resp, http.StatusInternalServerError, "Error: Internal Server Error.")
-		// http.Error(resp, "Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 

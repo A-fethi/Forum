@@ -1,12 +1,9 @@
 import { showNotification } from "./components/notifications.js";
 
 export function attachInteractionListeners() {
-  console.log("Attaching interaction listeners...");
   const reactionsBtns = document.querySelectorAll(".like-btn, .dislike-btn");
 
   reactionsBtns.forEach((button) => {
-    console.log("Processing button:", button);
-
     if (button.classList.contains("comment")) {
       console.log(
         `Attaching event listener to comment button with ID: ${button.dataset.commentId}`
@@ -22,8 +19,6 @@ export function attachInteractionListeners() {
       showNotification("Invalid button type", "error");
     }
   });
-
-  console.log("Finished attaching interaction listeners.");
 }
 
 export async function handleInteraction(e, itemtype) {
@@ -36,10 +31,8 @@ export async function handleInteraction(e, itemtype) {
   let item_id = null;
   if (itemtype === "post") {
     item_id = button.dataset.postId;
-    console.log(`Post ID: ${item_id}`);
   } else if (itemtype === "comment") {
     item_id = button.dataset.commentId;
-    console.log(`Comment ID: ${item_id}`);
   } else {
     console.error("Invalid item type:", itemtype);
     showNotification("Invalid button type", "error");
@@ -51,9 +44,7 @@ export async function handleInteraction(e, itemtype) {
     showNotification("Invalid action", "error");
     return;
   }
-  console.log(
-    "Sending request to /api/reactions with item_id: ${item_id}, item_type: ${itemtype}, action: ${action}"
-  );
+
   try {
     console.log(
       `Sending request to /api/reactions with item_id: ${item_id}, item_type: ${itemtype}, action: ${action}`
@@ -71,8 +62,7 @@ export async function handleInteraction(e, itemtype) {
     });
 
     if (response.ok) {
-      const result = await response.json();
-      console.log("Server Response:", result);
+      const result = await response.json();                                
 
       if (itemtype === "post") {
         document.querySelector(

@@ -35,7 +35,6 @@ func RateLimitMiddleware(next http.HandlerFunc, limit int, window time.Duration)
 		if count > limit {
 			config.Logger.Println("IP: ", ip, " Exceed the request limit!!")
 			models.SendErrorResponse(w, http.StatusTooManyRequests, "Rate Limit Exceeded. Try Again Later.")
-			// http.Error(w, "Rate limit exceeded. Try again later.", http.StatusTooManyRequests)
 			return
 		}
 

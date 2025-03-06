@@ -3,11 +3,9 @@ import { handleInteraction } from "./reactions.js";
 import { CommentHandler } from "./comments.js";
 
 export function createPostElement(post) {
-    console.log(post);
     const postElement = document.createElement('div');
     postElement.classList.add('post');
 
-    // Post Header
     const postHeader = document.createElement('div');
     postHeader.classList.add('post-header');
 
@@ -37,20 +35,17 @@ export function createPostElement(post) {
     postAuthor.appendChild(authorInfo);
     postHeader.appendChild(postAuthor);
 
-    // Post Title
     const postTitle = document.createElement('h2');
     postTitle.textContent = post.Title;
 
     postHeader.appendChild(postTitle);
     postElement.appendChild(postHeader);
 
-    // Post Content
     const postContent = document.createElement('div');
     postContent.classList.add('post-content');
     postContent.textContent = post.Content;
     postElement.appendChild(postContent);
 
-    // Post Categories
     const categoriesSpan = document.createElement('span');
     categoriesSpan.classList.add('post-categories');
     categoriesSpan.dataset.categories = post.Categories;
@@ -88,7 +83,6 @@ export function createPostElement(post) {
     likeButton.appendChild(likeText);
     interactionsDiv.appendChild(likeButton);
 
-    // Dislike Button
     const dislikeButton = document.createElement('button');
     dislikeButton.classList.add('interaction-button', 'dislike-btn');
     dislikeButton.dataset.postId = post.ID;
@@ -110,7 +104,6 @@ export function createPostElement(post) {
     dislikeButton.appendChild(dislikeText);
     interactionsDiv.appendChild(dislikeButton);
 
-    // show/Hide Comments Button
     const toggleCommentsButton = document.createElement('button');
     toggleCommentsButton.classList.add('interaction-button');
     toggleCommentsButton.classList.add('XYZ-Comments');
@@ -130,7 +123,6 @@ export function createPostElement(post) {
     toggleCommentsButton.appendChild(toggleCommentsIcon);
     toggleCommentsButton.appendChild(toggleCommentsText);
     interactionsDiv.appendChild(toggleCommentsButton);
-    // comments section
     const commentsSection = document.createElement('div');
     commentsSection.classList.add('comments-section');
     commentsSection.style.display = "none";
@@ -149,7 +141,6 @@ export function createPostElement(post) {
 
     commentsSection.appendChild(commentsHeader);
 
-    // Comment Form
     const commentForm = document.createElement('div');
     commentForm.classList.add('comment-form');
 
@@ -168,7 +159,6 @@ export function createPostElement(post) {
     commentForm.appendChild(commentButton);
     commentsSection.appendChild(commentForm);
 
-    // Comments Placeholder: fin kayt7ato bi darija
     const commentList = document.createElement('div');
     commentList.classList.add('comment-list');
     commentsSection.appendChild(commentList);

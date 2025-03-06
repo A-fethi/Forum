@@ -25,6 +25,7 @@ func SessionCheck(resp http.ResponseWriter, req *http.Request, db *sql.DB) bool 
 		config.Logger.Println("SessionCheck: Database error:", err)
 		return false
 	}
+	
 
 	if time.Since(createdAt) > 2*time.Hour {
 		config.Logger.Println("SessionCheck: Session token expired, deleting from database")

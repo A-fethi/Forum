@@ -22,19 +22,6 @@ func GetPosts(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	var categories []string
 	var err error
 
-	// pageStr := ""
-	// pathParts := strings.Split(req.URL.Path, "/")
-	// if len(pathParts) >= 4 {
-	// 	pageStr = pathParts[3]
-	// }
-	// fmt.Println("FFFFFFFFFFFFF", pathParts)
-	//
-
-	// if pageStr != "" {
-	// 	if p, err := strconv.Atoi(pageStr); err == nil && p > 0 {
-	// 		page = p
-	// 	}
-	// }
 	page := 1
 	switch {
 	case strings.HasPrefix(req.URL.Path, "/api/posts/categories="):
@@ -84,9 +71,6 @@ func GetPosts(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 
 	case req.URL.Path == "/api/posts" || strings.HasPrefix(req.URL.Path, "/api/posts/"):
 		pathParts := strings.Split(req.URL.Path, "/")
-		fmt.Println()
-		fmt.Println()
-		fmt.Println("TTTTTTTTTTTTTTTTTTTT:", pathParts, len(pathParts))
 		if len(pathParts) == 4 {
 			if p, err := strconv.Atoi(pathParts[3]); err == nil && p > 0 {
 				page = p
@@ -134,7 +118,6 @@ func GetPosts(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 func fetchPostsByCategories(categories []string, posts *[]models.Post, page int, db *sql.DB) error {
 	var limit = 10 * page
 
-	// Prepare the LIKE conditions for each category
 	var likeConditions []string
 	for _, category := range categories {
 		config.Logger.Printf("Category Found: %s", category)
@@ -154,7 +137,6 @@ func fetchPostsByCategories(categories []string, posts *[]models.Post, page int,
 	for i, category := range categories {
 		params[i] = "%" + category + "%"
 	}
-	// add limit and offset still have to see ila ghytzado ola la, pagination o dakchi
 	params[len(categories)] = limit
 
 	config.Logger.Println("Params: ", params)
@@ -173,7 +155,6 @@ func fetchPostsByCategories(categories []string, posts *[]models.Post, page int,
 
 func fetchAllPosts(posts *[]models.Post, page int, db *sql.DB) error {
 	var limit = 10 * page
-	// offset := (page - 1) * limit
 
 	query := `SELECT username, id, title, content, Categories, created_at, likes, dislikes 
               FROM posts 
@@ -205,7 +186,6 @@ func rowsProcess(rows *sql.Rows, posts *[]models.Post, db *sql.DB) error {
 			return fmt.Errorf("error scanning post: %v", err)
 		}
 		post.CreatedAt = utils.TimeAgo(creationTime)
-		config.Logger.Println("SSSSS: ", creationTime, post.CreatedAt)
 		config.Logger.Printf("Successfully scanned post with ID: %d", post.ID)
 
 		var err error

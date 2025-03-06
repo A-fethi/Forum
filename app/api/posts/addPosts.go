@@ -17,7 +17,6 @@ func AddPost(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	var (
 		postID int
 	)
-	// Ensure the user is authenticated before proceeding
 	if !auth.SessionCheck(resp, req, db) {
 		http.Error(resp, "User not authenticated", http.StatusUnauthorized)
 		return
@@ -43,7 +42,6 @@ func AddPost(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	sessionToken, err := utils.GetSessionToken(req)
 	if err != nil || sessionToken == "" || !auth.SessionCheck(resp, req, db) {
 		models.SendErrorResponse(resp, http.StatusUnauthorized, "Access: Unauthorized")
-		// http.Error(resp, "User not authenticated", http.StatusUnauthorized)
 		return
 	}
 	catCHECK := utils.CategoriesCheck(request.Categories)
@@ -55,7 +53,6 @@ func AddPost(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	if err != nil {
 		config.Logger.Println("Failed to get username:", err)
 		models.SendErrorResponse(resp, http.StatusInternalServerError, "Error: Internal Server Error. Try later")
-		// http.Error(resp, "Failed to get username", http.StatusInternalServerError)
 		return
 	}
 
@@ -70,7 +67,6 @@ func AddPost(resp http.ResponseWriter, req *http.Request, db *sql.DB) {
 	if err != nil {
 		config.Logger.Println("Failed to insert post:", err)
 		models.SendErrorResponse(resp, http.StatusInternalServerError, "Error: Internal Server Error. Try later")
-		// http.Error(resp, "Failed to insert post", http.StatusInternalServerError)
 		return
 	}
 

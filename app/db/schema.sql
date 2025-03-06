@@ -2,8 +2,9 @@
 CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT UNIQUE NOT NULL,  -- User's name
-    password TEXT NOT NULL,         -- Password
-    email TEXT UNIQUE NOT NULL,     -- Email
+    password TEXT UNIQUE NOT NULL,         -- Password
+    email TEXT UNIQUE NOT NULL,     -- Email             
+    google_id TEXT -- Google ID
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP  -- Creation date
 );
 
